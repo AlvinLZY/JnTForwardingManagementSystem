@@ -15,7 +15,7 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->string('OrderID', 8)->primary();
-            $table->date('CreatedDateTime')->default('CURRENT_TIMESTAMP');
+            $table->date('CreatedDateTime')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('CustomerID', 8);
             $table->timestamps();
         });
