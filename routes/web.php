@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('schedule','ScheduleController');
+Route::resource('master','MasterController');
+
+Route::get('/backWelcome','MasterController@backWelcome');
 
 Auth::routes();
 
