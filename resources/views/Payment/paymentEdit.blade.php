@@ -7,12 +7,12 @@
   </head>
   <body>
     <h2>Edit Payment Details</h2><br />
-    <form method="post" action="{{action ('App\Http\Controllers\PaymentController@update', $id) }}">
+    <form method="post" action="{{action ('PaymentController@update', $paymentID) }}">
       @csrf
       <input name="_method" type="hidden" value="PATCH">
       <p>
         <label for="paymentID">Payment ID: </label>
-        <input type="text" name="paymentID" value="{{$payment->paymentID}}">
+        <input type="text" name="paymentID" value="{{$payment->paymentID}}" readonly>
       </p>
       <p>
         <label for="deliveryOrderID">Delivery Order ID: </label>
@@ -24,7 +24,11 @@
       </p>
       <p>
         <label for="paymentType">Payment Type: </label>
-        <input type="text" name="paymentType" value=" {{$payment->paymentType}} ">
+        <select name="paymentType" value=" {{$payment->paymentType}} ">
+            <option value="eWallet">E-Wallet</option>
+            <option value="Cash">Cash</option>
+            <option value="card">Card</option>
+        </select>
       </p>
       <p>
         <label for="status">Status: </label>
