@@ -30,4 +30,6 @@ Route::patch('order/{orderID}','OrderController@update')->name('order.updaste');
 //Route::patch("order/{orderID}", 'OrderController@update')->name('order.update');
 //Route::patch("order/edit/{orderID}", [OrderController::class,"update"]);
 
-//Route::patch("updateVenue/{id}",[VenueController::class,"update"]);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
