@@ -21,6 +21,7 @@
 						<th>Total Amount</th>
                                                 <th>Payment Type</th>
                                                 <th>Status</th>
+                                                <th>Date Created</th>
 						<th colspan="2">Action</th>
 					</tr>
 				</thead>
@@ -32,12 +33,13 @@
 						<td>{{$payment['totalAmount']}}</td>
                                                 <td>{{$payment['paymentType']}}</td>
                                                 <td>{{$payment['status']}}</td>
+                                                <td>{{$payment['created_at']}}</td>
 						
 						<td>
-							<a href="{{action('App\Http\Controllers\PaymentController@edit', $payment['paymentID'])}}" class="btn btn-warning">Edit</a>
+							<a href="{{action('PaymentController@edit', $payment['paymentID'])}}" class="btn btn-warning">Edit</a>
 						</td>
 						<td>
-							<form action="{{action('App\Http\Controllers\PaymentController@destroy', $payment['paymentID'])}}" method="post">
+							<form action="{{action('PaymentController@destroy', $payment['paymentID'])}}" method="post">
 							@csrf
 							<input name="_method" type="hidden" value="DELETE">
 							<button class="btn btn-danger" type="submit">Delete</button>
@@ -47,6 +49,7 @@
 					@endforeach	
 				</tbody>
 			</table>
+                        <div><button type="button" onclick="window.location='{{ action('PaymentController@create') }}'">Create New Payment</button></div>
 		</div>
 	</body>
 </html>
