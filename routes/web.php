@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('schedule','ScheduleController');
+Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
 
-Route::get('/backWelcome','MasterController@backWelcome');
+Route::get('/welcome','MasterController@welcome');
+Route::get('/viewSchedule','ScheduleController@index');
+
 
 Auth::routes();
 

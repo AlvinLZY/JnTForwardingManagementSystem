@@ -82,7 +82,7 @@ class MasterController extends Controller
         //
     }
 
-    public function backWelcome(){
+    public function welcome(){
         return view('welcome');
     }
 }
