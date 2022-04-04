@@ -27,3 +27,6 @@ Route::get('/viewSchedule','ScheduleController@index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('payments', 'PaymentController');
+Route::get('/paymentIndex', 'PaymentController@index');
