@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments=Payment::all();
-	return view('paymentIndex', compact('payments'));
+	return view('Payment/paymentIndex', compact('payments'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('payment');
+        return view('Payment/paymentCreate');
     }
 
     /**
@@ -37,14 +37,21 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $payment = new Payment();
-	$payment->paymentID = $request->get('paymentID');
-	$payment->deliveryOrderID = $request->get('deliveryOrderID');
-        $payment->totalAmount = $request->get('totalAmount');
-        $payment->paymentType = $request->get('paymentType');
-        $payment->status = $request->get('status');
-	$payment->save();
+        try{
+            $payment = new Payment();
+            $payment->paymentID = $request->get('paymentID');
+            $payment->deliveryOrderID = $request->get('deliveryOrderID');
+            $payment->totalAmount = $request->get('totalAmount');
+            $payment->paymentType = $request->get('paymentType');
+            $payment->status = $request->get('status');
+            $payment->save();
 	return redirect('payments')->with('success', 'Information Has been added');
+        }
+        catch (Exception $e){
+            echo 'Message: ' .$e->getMessage();
+            return redirect('payments')->with('error', $e->getMessage());
+        }
+        
     }
 
     /**
@@ -64,10 +71,10 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($paymentID)
     {
-        $payment = Payment::find($id);
-	return view('paymentEdit', compact('payment', 'id'));
+        $payment = Payment::find($paymentID);
+	return view('Payment/paymentEdit', compact('payment', 'paymentID'));
     }
 
     /**
@@ -77,16 +84,23 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $paymentID)
     {
-        $payment= Payment::find($id);
-	$payment->paymentID = $request->get('paymentID');
-	$payment->deliveryOrderID = $request->get('deliveryOrderID');
-        $payment->totalAmount = $request->get('totalAmount');
-        $payment->paymentType = $request->get('paymentType');
-        $payment->status = $request->get('status');
-	$payment->save();
+        try{
+            $payment= Payment::find($paymentID);
+            $payment->paymentID = $request->get('paymentID');
+            $payment->deliveryOrderID = $request->get('deliveryOrderID');
+            $payment->totalAmount = $request->get('totalAmount');
+            $payment->paymentType = $request->get('paymentType');
+            $payment->status = $request->get('status');
+            $payment->save();
 	return redirect('payments');
+        }
+        catch (Exception $e){
+            echo 'Message: ' .$e->getMessage();
+            return redirect('payments')->with('error', $e->getMessage());
+        }
+        
     }
 
     /**
@@ -95,9 +109,9 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($paymentID)
     {
-        $payment= Payment::find($id);
+        $payment= Payment::find($paymentID);
 	$payment->delete();
 	return redirect('payments')->with('success', 'Information has been deleted');
     }
