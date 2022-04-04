@@ -15,7 +15,7 @@ use App\Http\Controllers;
                     <th>Transport Plat No</th>
                     <th>Date Created</th>
                     <th>Destination Region</th>
-                    <th>Deliver DateTime</th>
+                    <th>DDDDD DateTime</th>
                     <th colspan="2">Action</th>
                 </tr>
             </thead>
