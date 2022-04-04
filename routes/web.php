@@ -23,10 +23,16 @@ Route::resource('master','MasterController');
 Route::get('/welcome','MasterController@welcome');
 Route::get('/viewSchedule','ScheduleController@index');
 
+Route::resource('order',OrderController::class);
+//Route::get('/order','OrderController@all');
+Route::patch('order/{orderID}','OrderController@update')->name('order.updaste');
+//Route::get('/OrderUpdate','OrderController@');
+//Route::patch("order/{orderID}", 'OrderController@update')->name('order.update');
+//Route::patch("order/edit/{orderID}", [OrderController::class,"update"]);
+
+Route::resource('payments', 'PaymentController');
+Route::get('/paymentIndex', 'PaymentController@index');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('payments', 'PaymentController');
-Route::get('/paymentIndex', 'PaymentController@index');
