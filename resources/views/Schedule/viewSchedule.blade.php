@@ -10,7 +10,7 @@ use App\Http\Controllers;
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Schedule ID</th>
+                    <th>SSS</th>
                     <th>Driver Name</th>
                     <th>Transport Plat No</th>
                     <th>Date Created</th>
