@@ -25,6 +25,10 @@ Route::get('/welcome','MasterController@welcome');
 Route::get('/viewSchedule','ScheduleController@index');
 Route::get('/createCustomer','CustomerController@create');
 
+Route::resource('order',OrderController::class);
+
+Route::patch('order/{orderID}','OrderController@update')->name('order.update');
+
 
 Auth::routes();
 
