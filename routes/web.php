@@ -24,11 +24,9 @@ Route::get('/welcome','MasterController@welcome');
 Route::get('/viewSchedule','ScheduleController@index');
 
 Route::resource('order',OrderController::class);
-//Route::get('/order','OrderController@all');
-Route::patch('order/{orderID}','OrderController@update')->name('order.updaste');
-//Route::get('/OrderUpdate','OrderController@');
-//Route::patch("order/{orderID}", 'OrderController@update')->name('order.update');
-//Route::patch("order/edit/{orderID}", [OrderController::class,"update"]);
+
+Route::patch('order/{orderID}','OrderController@update')->name('order.update');
+
 
 Auth::routes();
 

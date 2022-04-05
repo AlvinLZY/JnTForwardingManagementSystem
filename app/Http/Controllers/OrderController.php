@@ -4,18 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DeliveryOrder;
+use App\Models\Customer;
 
 class OrderController extends Controller
 {
     public function index()
     {
         $delivery_orders = DeliveryOrder::all();
+        //$data = Schedule::select('scheduleID')->get();
+        //return $data;
         return view ('order.index')->with('delivery_orders', $delivery_orders);
     }
 
+    // public function readXml()
+    // {
+        
+    //     $xmlDataString = file_get_contents(public_path('xml/parcelContent.xml'));
+    //     $xmlObject = simplexml_load_string($xmlDataString);
+                   
+    //     $json = json_encode($xmlObject);
+    //     $phpDataArray = json_decode($json, true); 
+   
+    //     // echo "<pre>";
+    //     // print_r($phpDataArray);
+    //     dd($phpDataArray);
+    // }
+
     public function create()
     {
-        return view('order.create');
+        $customers = Customer::all();
+        $delivery_orders = DeliveryOrder::all();
+        return view('order.create',compact('customers','delivery_orders'));
     }
 
     public function store(Request $request)
@@ -27,14 +46,18 @@ class OrderController extends Controller
 
     public function show($orderID)
     {
+        $customers = Customer::all();
         $delivery_orders = DeliveryOrder::find($orderID);
-        return view('order.show')->with('delivery_orders', $delivery_orders);
+        $senderID = Customer::firstWhere('customerID',$delivery_orders['senderID']);
+        $receiverID = Customer::firstWhere('customerID',$delivery_orders['receiverID']);
+        return view('order.show',compact('customers','delivery_orders','senderID','receiverID'));
     }
 
     public function edit($orderID)
     {
+        $customers = Customer::all();
         $delivery_orders = DeliveryOrder::find($orderID);
-        return view('order.edit',compact('delivery_orders', 'delivery_orders'));
+        return view('order.edit',compact('delivery_orders', 'delivery_orders','customers'));
     }
 
     public function update(Request $request, $orderID)
