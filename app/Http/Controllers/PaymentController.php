@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Payment;
 
+use App\Models\DeliveryOrder;
+
 class PaymentController extends Controller
 {
     /**
@@ -26,7 +28,9 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('Payment/paymentCreate');
+        //return view('Payment/paymentCreate');
+        $orders = DeliveryOrder::all();
+        return view('Payment/paymentCreate',compact('orders'));
     }
 
     /**
@@ -45,7 +49,7 @@ class PaymentController extends Controller
             $payment->paymentType = $request->get('paymentType');
             $payment->status = $request->get('status');
             $payment->save();
-	return redirect('payments')->with('success', 'Information Has been added');
+	return redirect('payments')->with('success', 'Payment is successfully added.');
         }
         catch (Exception $e){
             echo 'Message: ' .$e->getMessage();
@@ -60,9 +64,10 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($paymentID)
     {
-        //
+        $payment = Payment::find($paymentID);
+        return view('Payment/paymentDetails')->with('payment', $payment);
     }
 
     /**
@@ -113,6 +118,6 @@ class PaymentController extends Controller
     {
         $payment= Payment::find($paymentID);
 	$payment->delete();
-	return redirect('payments')->with('success', 'Information has been deleted');
+	return redirect('payments')->with('success', 'Payment has been deleted');
     }
 }

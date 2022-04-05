@@ -1,3 +1,6 @@
+@extends('include.Master')
+@section('title','Edit Order Page')
+@section('body')
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,8 +38,11 @@
         <input type="text" name="status" value=" {{$payment->status}} ">
       </p>
       <p>
-        <button type="submit" style="margin-left:38px">Update</button>
+          <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
+        <button class="btn btn-success" type="submit" style="margin-left:38px">Update</button>
+        
       </p>
     </form>
   </body>
 </html>
+@endsection

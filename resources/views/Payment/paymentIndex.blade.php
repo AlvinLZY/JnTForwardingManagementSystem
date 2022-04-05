@@ -1,3 +1,6 @@
+@extends('include.Master')
+@section('title','Edit Order Page')
+@section('body')
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,6 +16,9 @@
 				<p>{{\Session::get('success') }}</p>
 			</div> <br />
 			@endif
+                        <div class="card-header">
+                            <h2>Payment Table</h2>
+                        </div>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -34,7 +40,9 @@
                                                 <td>{{$payment['paymentType']}}</td>
                                                 <td>{{$payment['status']}}</td>
                                                 <td>{{$payment['created_at']}}</td>
-						
+						<td>
+							<a href="{{action('PaymentController@show', $payment['paymentID'])}}" class="btn btn-info btn-sm">View</a>
+						</td>
 						<td>
 							<a href="{{action('PaymentController@edit', $payment['paymentID'])}}" class="btn btn-warning">Edit</a>
 						</td>
@@ -49,7 +57,8 @@
 					@endforeach	
 				</tbody>
 			</table>
-                        <div><button type="button" onclick="window.location='{{ action('PaymentController@create') }}'">Create New Payment</button></div>
+                        <div style="text-align:center"><button type="button" class="btn btn-success btn-sm" onclick="window.location='{{ action('PaymentController@create') }}'">Create New Payment</button></div>
 		</div>
 	</body>
 </html>
+@endsection
