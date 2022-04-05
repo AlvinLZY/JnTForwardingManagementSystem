@@ -15,9 +15,19 @@
         <label>Order ID</label></br>
         <text type="text" name="orderID" id="orderID" value="{{$delivery_orders->orderID}}"  id="orderID" class="form-control"/>{{$delivery_orders->orderID}}</text><br>
         <label>Sender ID</label></br>
-        <input type="text" name="senderID" id="senderID" value="{{$delivery_orders->senderID}}" class="form-control"></br>
+        <select name="senderID" id="senderID" class="form-control">
+          @foreach($customers as $customer)
+              <option value="{{$customer['customerID']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+          @endforeach
+        </select>
+        </br>
         <label>Receiver ID</label></br>
-        <input type="text" name="receiverID" id="receiverID" value="{{$delivery_orders->receiverID}}" class="form-control"></br>
+        <select name="receiverID" id="receiverID" class="form-control">
+          @foreach($customers as $customer)
+              <option value="{{$customer['customerID']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+          @endforeach
+        </select>
+        </br>
         <label>Total Weight</label></br>
         <input type="text" name="totalWeight" id="totalWeight" value="{{$delivery_orders->totalWeight}}" class="form-control"></br>
         <label>Parcel Content Category</label></br>
