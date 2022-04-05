@@ -14,14 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->integer('customerID', true);
+            $table->bigIncrements('id');
             $table->string('firstName', 30);
             $table->string('lastName', 30);
-            $table->text('contactNo');
-            $table->text('email');
-            $table->integer('addressID');
+            $table->string('contactNo');
+            $table->string('email');
+            $table->string('address');
             $table->timestamps();
         });
+        
+        DB::statement("ALTER TABLE customers AUTO_INCREMENT = 1001;");
     }
 
     /**

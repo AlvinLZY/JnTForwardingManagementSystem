@@ -19,9 +19,11 @@ Route::get('/', function () {
 
 Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
+Route::resource('customer','CustomerController');
 
 Route::get('/welcome','MasterController@welcome');
 Route::get('/viewSchedule','ScheduleController@index');
+Route::get('/createCustomer','CustomerController@create');
 
 
 Auth::routes();
