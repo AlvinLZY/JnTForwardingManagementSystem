@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 06:03 AM
+-- Generation Time: Apr 06, 2022 at 09:45 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -172,12 +172,20 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `regions` (
   `regionID` int(11) NOT NULL,
-  `poscode` int(11) NOT NULL,
+  `postcode` int(11) NOT NULL,
   `city` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `state` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `regions`
+--
+
+INSERT INTO `regions` (`regionID`, `postcode`, `city`, `state`, `created_at`, `updated_at`) VALUES
+(1, 31450, 'Ipoh', 'Perak', NULL, NULL),
+(2, 31900, 'Kampar', 'Perak', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,9 +199,24 @@ CREATE TABLE `schedules` (
   `transportID` int(11) NOT NULL,
   `destRegionID` int(11) NOT NULL,
   `dateTimeDelivery` datetime NOT NULL,
+  `isDelivered` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`scheduleID`, `driverID`, `transportID`, `destRegionID`, `dateTimeDelivery`, `isDelivered`, `created_at`, `updated_at`) VALUES
+(2, 1, 2, 1, '2022-04-29 21:52:00', 1, '2022-04-04 01:52:04', '2022-04-06 19:18:31'),
+(3, 2, 2, 2, '2022-03-30 17:52:00', 0, '2022-04-04 01:52:17', '2022-04-04 01:52:17'),
+(9, 1, 1, 1, '2022-04-05 09:10:00', 0, '2022-04-04 17:10:58', '2022-04-04 17:10:58'),
+(10, 1, 1, 2, '2022-04-05 09:11:00', 1, '2022-04-04 17:11:08', '2022-04-04 17:11:08'),
+(11, 1, 1, 1, '2022-04-18 21:17:00', 0, '2022-04-05 05:17:56', '2022-04-05 05:17:56'),
+(12, 1, 1, 2, '2022-04-26 21:18:00', 1, '2022-04-05 05:18:30', '2022-04-05 05:18:30'),
+(13, 1, 1, 1, '2022-12-05 21:19:00', 1, '2022-04-05 05:19:11', '2022-04-05 05:19:11'),
+(14, 1, 1, 1, '2022-04-07 02:48:00', 0, '2022-04-06 10:48:08', '2022-04-06 10:48:08');
 
 -- --------------------------------------------------------
 
@@ -214,6 +237,14 @@ CREATE TABLE `staff` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staffID`, `staffFirstName`, `staffLastName`, `contactNo`, `email`, `password`, `loginStatus`, `workingHour`, `created_at`, `updated_at`) VALUES
+(1, 'Alvin', 'Lim', '01128678751', 'alvin@gmail.com', '123123123123', 1, 13, NULL, NULL),
+(2, 'Alan', 'Lim', '01128678751', 'alvin@gmail.com', '123123123123', 1, 13, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -228,6 +259,14 @@ CREATE TABLE `transports` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transports`
+--
+
+INSERT INTO `transports` (`transportID`, `carType`, `carPlate`, `driverID`, `created_at`, `updated_at`) VALUES
+(1, 'Lori', 'PAK 2386', '1', NULL, NULL),
+(2, 'LORI', 'PAK 2336', '123', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -302,6 +341,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `regions`
+--
+ALTER TABLE `regions`
+  ADD PRIMARY KEY (`regionID`);
+
+--
 -- Indexes for table `schedules`
 --
 ALTER TABLE `schedules`
@@ -373,22 +418,28 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `regionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `scheduleID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `scheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `staffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transports`
 --
 ALTER TABLE `transports`
-  MODIFY `transportID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `transportID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

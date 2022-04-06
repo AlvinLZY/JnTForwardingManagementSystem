@@ -14,7 +14,8 @@ use App\Http\Controllers\ScheduleController;
             @csrf
 
                 <label for="name">Driver Name:</label>
-                <select name="staffID" id="staffID">
+                <select name="staffID" id="staffID" required>
+                    <option selected>-- Select A Driver --</option>
                     @foreach($staffs as $staff)
                         <option value="{{$staff['staffID']}}">{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
                     @endforeach
@@ -22,7 +23,8 @@ use App\Http\Controllers\ScheduleController;
             </p>
             <p>
                 <label for="code">Transport Plat No:</label>
-                <select name="transportID" id="transportID">
+                <select name="transportID" id="transportID" required>
+                    <option selected>-- Select A Transport --</option>
                     @foreach($transports as $transport)
                         <option value="{{$transport['transportID']}}">{{$transport['carPlate']}}</option>
                     @endforeach
@@ -31,11 +33,6 @@ use App\Http\Controllers\ScheduleController;
             <p>
                 <label for="name">Destination Region:</label>
                 <input type="text" name="postcode">
-                <select name="postcode" id="postcode">
-                    @foreach($transports as $transport)
-                        <option value="{{$transport['transportID']}}">{{$transport['carPlate']}}</option>
-                    @endforeach
-                </select>
             </p>
             <p>
                 <label for="code">Delivery DateTime:</label>
