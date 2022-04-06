@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
 Route::resource('customer','CustomerController');
+Route::resource('staff','StaffController');
 
 Route::get('/welcome','MasterController@welcome');
 Route::get('/viewSchedule','ScheduleController@index');
