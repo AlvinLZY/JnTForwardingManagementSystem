@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class staff extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'staffID';
+
+    public function schedule(){
+        return $this->hasMany(Schedule::class,'staffID');
+    }
 }

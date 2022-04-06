@@ -18,11 +18,14 @@ Route::get('/', function () {
 });
 
 Route::resource('schedules','ScheduleController');
+Route::resource('staffs','StaffController');
 Route::resource('master','MasterController');
 
 Route::get('/welcome','MasterController@welcome');
-Route::get('/viewSchedule','ScheduleController@index');
+Route::get('/crreate','ScheduleController@Create');
+Route::get('/eddit','ScheduleController@Edit');
 
+Route::patch('/uppdate','ScheduleController@Update');
 
 Auth::routes();
 

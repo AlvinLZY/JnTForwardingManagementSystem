@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Transport extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'transportID';
+
+    public function schedule(){
+        return $this->hasMany(Schedule::class,'transportID');
+    }
 }
