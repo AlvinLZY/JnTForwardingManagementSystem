@@ -18,14 +18,23 @@ Route::get('/', function () {
 });
 
 Route::resource('schedules','ScheduleController');
-Route::resource('staffs','StaffController');
 Route::resource('master','MasterController');
+Route::resource('customer','CustomerController');
+Route::resource('staff','StaffController');
 
 Route::get('/welcome','MasterController@welcome');
 Route::get('/crreate','ScheduleController@Create');
 Route::get('/eddit','ScheduleController@Edit');
+Route::get('/viewSchedule','ScheduleController@index');
+Route::get('/createCustomer','CustomerController@create');
+
+Route::resource('order',OrderController::class);
 
 Route::patch('/uppdate','ScheduleController@Update');
+Route::patch('order/{orderID}','OrderController@update')->name('order.update');
+
+Route::resource('payments', 'PaymentController');
+Route::get('/paymentIndex', 'PaymentController@index');
 
 Auth::routes();
 
