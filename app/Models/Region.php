@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transport extends Model
+class Region extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'transportID';
+    protected $primaryKey = 'regionID';
 
     public function schedule(){
-        return $this->hasMany(Schedule::class,'transportID');
+        return $this->hasMany(Schedule::class,'regionID');
     }
 }

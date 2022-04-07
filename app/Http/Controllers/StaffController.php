@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\staff;
 
-class MasterController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class MasterController extends Controller
      */
     public function index()
     {
-        //
+        $staffs = staff::all();
+        return view ('Staff.index')->with('staffs', $staffs);
     }
 
     /**
@@ -23,7 +25,7 @@ class MasterController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -56,7 +58,8 @@ class MasterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $staffs = staff::find($id);
+        return view('Staff/edit',compact('staffs','id'));
     }
 
     /**
@@ -68,7 +71,13 @@ class MasterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $staff = staff::find($id);
+        $staff ->staffFirstName = $request ->get('staffFirstName');
+        $staff ->staffLastName = $request ->get('staffLastName');
+        $staff ->contactNo = $request ->get('contactNo');
+        $staff ->email = $request ->get('email');
+        $staff ->save();
+        return redirect('staff');
     }
 
     /**
@@ -79,10 +88,8 @@ class MasterController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function welcome(){
-        return view('welcome');
+        $staff = staff::find($id);
+        $staff->delete();
+        return redirect('staff')->with('success','Information has been deleted');
     }
 }

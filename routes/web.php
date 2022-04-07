@@ -20,9 +20,16 @@ Route::get('/', function () {
 Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
 Route::resource('customer','CustomerController');
+Route::resource('staff','StaffController');
+Route::resource('order',OrderController::class);
 
 Route::get('/welcome','MasterController@welcome');
+
+Route::get('/crreate','ScheduleController@Create');
+Route::get('/eddit','ScheduleController@Edit');
 Route::get('/viewSchedule','ScheduleController@index');
+Route::patch('/uppdate','ScheduleController@Update');
+
 Route::get('/createCustomer','CustomerController@create');
 
 Route::resource('order',OrderController::class);
@@ -36,3 +43,4 @@ Route::get('/paymentIndex', 'PaymentController@index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
