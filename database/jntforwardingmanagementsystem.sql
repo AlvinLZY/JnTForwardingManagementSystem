@@ -30,10 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `addresses` (
   `addressID` int(11) NOT NULL,
   `regionID` int(11) NOT NULL,
-  `unitNo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address1` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address2` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address3` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customerID` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -45,12 +43,11 @@ CREATE TABLE `addresses` (
 --
 
 CREATE TABLE `customers` (
-  `customerID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `firstName` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastName` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contactNo` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addressID` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
