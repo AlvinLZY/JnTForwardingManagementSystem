@@ -6,7 +6,7 @@
                         <h2>Order Now</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/order/create') }}" class="btn btn-success btn-sm" title="Add New Order">
+                        <a href="{{ url('/order/create') }}" class="btn btn-warning btn-sm" title="Add New Order">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
                         <br/>
@@ -35,7 +35,7 @@
  
                                         <td>
                                             <a href="{{ url('/order/' . $item->orderID) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/order/' . $item->orderID . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/order/' . $item->orderID . '/edit') }}" title="Edit Order"><button class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
  
                                             <form method="POST" action="{{ url('/order' . '/' . $item->orderID) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
