@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\staff;
+use App\Models\User;
 
 class AdminUserSeeder extends Seeder
 {
@@ -15,6 +15,6 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        staff::create(['username'=>'admin','staffFirstName'=>'system','staffLastName'=>'admin', 'email'=>'admin@admin.com','contactNo'=>'0123456789', 'password'=> bcrypt('adminpass')]);
+        User::create(['username'=>'admin','firstName'=>'system','lastName'=>'admin', 'email'=>'admin@admin.com','contactNo'=>'0123456789', 'password'=> bcrypt('adminpass')]);
     }
 }

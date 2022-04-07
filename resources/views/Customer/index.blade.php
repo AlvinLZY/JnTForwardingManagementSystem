@@ -16,13 +16,13 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($customers as $item)
+            @foreach($data as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->lastName." ".$item->firstName }}</td>
                     <td>{{ $item->contactNo }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->address }}</td>
+                    <td>{{ $item->address.", ".$item->postcode." ".$item->city.", ".$item->state }}</td>
 
                     <td>
                         <a href="{{url('/customer/' . $item->id . '/edit')}}" class="btn btn-warning" >Edit</a>

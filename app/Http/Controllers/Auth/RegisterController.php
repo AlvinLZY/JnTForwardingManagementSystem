@@ -50,10 +50,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'min:8', 'max:20', 'unique:staff,username'],
-            'staffFirstName' => ['required', 'string', 'max:30'],
-            'staffLastName' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:staff,email'],
+            'username' => ['required', 'string', 'min:8', 'max:20', 'unique:users,username'],
+            'firstName' => ['required', 'string', 'max:30'],
+            'lastName' => ['required', 'string', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users,email'],
             'contactNo' => ['required','numeric'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],                       
         ]);
@@ -67,10 +67,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return \App\Models\staff::create([
+        return User::create([
             'username' => $data['username'],
-            'staffFirstName' => $data['staffFirstName'],
-            'staffLastName' => $data['staffLastName'],
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
             'email' => $data['email'],
             'contactNo' => $data['contactNo'],
             'password' => Hash::make($data['password']),
