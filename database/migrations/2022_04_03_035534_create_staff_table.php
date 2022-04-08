@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
+            /*DB::statement("INSERT INTO `staff` (`id`, `username`, `staffFirstName`, `staffLastName`, `contactNo`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'ID1001', 'Alvin', 'Lim', '01128678751', 'alvin@gmail.com', '123123123123', NULL, NULL, NULL),
+(2, 'ID1002', 'Alan', 'Lim', '01128678751', 'alvin@gmail.com', '123123123123', NULL, NULL, NULL),
+(3, 'ID1003', 'Alice', 'Leong', '213123123', 'alice@gmail.com', '31231231312312', NULL, NULL, NULL);");*/
         });
     }
 

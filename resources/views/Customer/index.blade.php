@@ -38,6 +38,9 @@
             @endforeach
             </tbody>
         </table>
+        <div style="text-align:center">
+            <button type="button" class="btn btn-success" onclick="window.location='{{ action('CustomerController@create') }}'">Create New Customer</button>
+        </div>
     </div>
 </div>
 @endsection
