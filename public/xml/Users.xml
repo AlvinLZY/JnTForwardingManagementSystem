@@ -17,3 +17,22 @@
         <email>weihern23@gmail.com</email>
     </User>
 </Users>
+<?xml version="1.0" encoding="UTF-8"?>
+<Users>
+    <User>
+        <id>1</id>
+        <username>admin</username>
+        <firstName>system</firstName>
+        <lastName>admin</lastName>
+        <contactNo>0123456789</contactNo>
+        <email>admin@admin.com</email>
+    </User>
+    <User>
+        <id>2</id>
+        <username>weihernsing</username>
+        <firstName>weihern</firstName>
+        <lastName>sing</lastName>
+        <contactNo>01123456781</contactNo>
+        <email>weihern23@gmail.com</email>
+    </User>
+</Users>
