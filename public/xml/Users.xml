@@ -9,11 +9,11 @@
         <email>admin@admin.com</email>
     </User>
     <User>
-        <id>3</id>
-        <username>weihernsing</username>
-        <firstName>weihern</firstName>
+        <id>2</id>
+        <username>weiheasd</username>
+        <firstName>wei</firstName>
         <lastName>sing</lastName>
-        <contactNo>0987654321234</contactNo>
-        <email>weihern23@gmail.</email>
+        <contactNo>0123635457</contactNo>
+        <email>singwh@gmail.com</email>
     </User>
 </Users>

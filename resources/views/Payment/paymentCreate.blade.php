@@ -39,7 +39,10 @@
 			</p>
                         <p>
 				<label for="status">Status:</label>
-                                <input type="text" name="status" required>
+                                <select name="status" id="status">
+                                    <option value="Paid">Paid</option>
+                                    <option value="CashOnDelivery">Cash On Delivery</option>
+                                </select>
 			</p>
 			<p>
                             <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>

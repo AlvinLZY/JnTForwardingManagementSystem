@@ -11,14 +11,14 @@
         <label>Sender ID</label></br>
         <select name="senderID" id="senderID" class="form-control">
           @foreach($customers as $customer)
-              <option value="{{$customer['customerID']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+              <option value="{{$customer['id']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
           @endforeach
         </select>
         </br>
         <label>Receiver ID</label></br>
         <select name="receiverID" id="receiverID" class="form-control">
           @foreach($customers as $customer)
-              <option value="{{$customer['customerID']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+              <option value="{{$customer['id']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
           @endforeach
         </select>
         </br>
