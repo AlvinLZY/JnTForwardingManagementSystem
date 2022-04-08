@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('driverID');
             $table->timestamps();
         });
+        
+        DB::statement("INSERT INTO `transports` (`transportID`, `carType`, `carPlate`, `driverID`, `created_at`, `updated_at`) VALUES
+                                            (1, 'Lori', 'PAK 2386', '1', NULL, NULL),
+                                            (2, 'LORI', 'PAK 2336', '123', NULL, NULL);");
     }
 
     /**

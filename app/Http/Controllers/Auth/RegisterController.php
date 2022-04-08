@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Regex;
 
 class RegisterController extends Controller
 {
@@ -31,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/welcome';
 
     /**
      * Create a new controller instance.
@@ -56,7 +57,7 @@ class RegisterController extends Controller
             'firstName' => ['required', 'string', 'max:30'],
             'lastName' => ['required', 'string', 'max:30'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users,email'],
-            'contactNo' => ['required','numeric'],
+            'contactNo' => ['required','numeric','regex:/(01)[0-9]{9}/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],                       
         ]);
     }
