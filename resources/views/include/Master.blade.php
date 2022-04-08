@@ -53,12 +53,6 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -82,7 +76,18 @@
     </div>
 </nav>
 <div class="container">
+    @auth
     @yield('body')
+    @else
+        @if(Request::is('login'))
+            @yield('body')
+        @else
+            <script type="text/javascript">
+                window.alert("Please login first to access to this page");
+                window.location = "{{url('/login')}}";
+            </script>
+        @endif
+    @endauth
 </div>
 </body>
 </html>

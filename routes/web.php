@@ -38,9 +38,12 @@ Route::resource('payments', 'PaymentController');
 Route::get('/paymentIndex', 'PaymentController@index');
 
 Auth::routes([
-  'register' => false,
   'verify' => false,
   'reset' => false
 ]);
 
+Route::group(['middleware'=>'auth'], function () {
+	Route::get('permissions-all-users',['middleware'=>'check-permission:user|admin','uses'=>'HomeController@allUsers']);
+	Route::get('permissions-admin',['middleware'=>'check-permission:admin','uses'=>'HomeController@adminSuperadmin']);
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

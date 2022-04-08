@@ -24,6 +24,7 @@ class User extends Authenticatable
         'contactNo',
         'email',
         'password',
+        'is_permission',
     ];
 
     /**
