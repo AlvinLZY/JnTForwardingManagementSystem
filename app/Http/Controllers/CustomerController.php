@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Region;
 use App\Models\Address;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -16,11 +17,16 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        if(Auth::check())
+        {
         $data = Customer::join('addresses','customers.id','=','addresses.customerID')
                 ->join('regions','addresses.regionID','=','regions.regionID')
                 ->get(['customers.id','customers.lastName','customers.firstName','customers.contactNo','customers.email','addresses.address','regions.postcode','regions.city','regions.state']);
         
         return view ('Customer.index',compact('data'));
+        }
+        else
+            return view('Auth/login');
     }
 
     /**
@@ -30,8 +36,13 @@ class CustomerController extends Controller
      */
     public function create()
     {
+        if(Auth::check())
+        {
         $regions = Region::all();
         return view('Customer\createCustomer',compact('regions'));
+        }
+        else
+            return view('Auth/login');        
     }
 
     /**
@@ -88,15 +99,21 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $customers = Customer::find($id);
-        $regions = Region::all();
+        if(Auth::check())
+        {
+            $customers = Customer::find($id);
+            $regions = Region::all();
+
+            $data = Customer::join('addresses','customers.id','=','addresses.customerID')
+                    ->join('regions','addresses.regionID','=','regions.regionID')
+                    ->where('customers.id',$id)
+                    ->get(['customers.id','customers.lastName','customers.firstName','customers.contactNo','customers.email','addresses.address','addresses.addressID','regions.regionID']);
+
+            return view('Customer/edit',compact('customers','id','regions','data'));
+        }
+        else
+            return view('Auth/login');
         
-        $data = Customer::join('addresses','customers.id','=','addresses.customerID')
-                ->join('regions','addresses.regionID','=','regions.regionID')
-                ->where('customers.id',$id)
-                ->get(['customers.id','customers.lastName','customers.firstName','customers.contactNo','customers.email','addresses.address','addresses.addressID','regions.regionID']);
-        
-        return view('Customer/edit',compact('customers','id','regions','data'));
     }
 
     /**

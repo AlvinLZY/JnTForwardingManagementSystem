@@ -1,5 +1,6 @@
 @extends('include.master')
-
+@auth
+@if(checkPermission(['admin']))
 @section('body')
 <div class="container">
     <div class="row justify-content-center">
@@ -113,3 +114,11 @@
     </div>
 </div>
 @endsection
+@else
+    <script type="text/javascript">
+        window.alert("You are not allowed to access to this page!!");
+        window.location = "{{url('/welcome')}}";
+    </script>
+
+@endif
+@endauth
