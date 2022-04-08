@@ -19,11 +19,11 @@
       </p>
       <p>
         <label for="deliveryOrderID">Delivery Order ID: </label>
-        <input type="text" name="deliveryOrderID" value=" {{$payment->deliveryOrderID}} ">
+        <input type="text" name="deliveryOrderID" value=" {{$payment->deliveryOrderID}} " required readonly>
       </p>
       <p>
         <label for="totalAmount">Total Amount: </label>
-        <input type="text" name="totalAmount" value=" {{$payment->totalAmount}} ">
+        <input type="number" name="totalAmount" value=" {{$payment->totalAmount}} " required>
       </p>
       <p>
         <label for="paymentType">Payment Type: </label>
@@ -35,7 +35,7 @@
       </p>
       <p>
         <label for="status">Status: </label>
-        <input type="text" name="status" value=" {{$payment->status}} ">
+        <input type="text" name="status" value=" {{$payment->status}} " required>
       </p>
       <p>
           <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>

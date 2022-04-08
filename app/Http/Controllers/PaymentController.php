@@ -8,6 +8,8 @@ use App\Models\Payment;
 
 use App\Models\DeliveryOrder;
 
+use XMLWriter;
+
 class PaymentController extends Controller
 {
     /**
@@ -18,6 +20,29 @@ class PaymentController extends Controller
     public function index()
     {
         $payments=Payment::all();
+        
+        $xml = new XMLWriter();
+        $xml->openURI('xml/transaction.xml');
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument('1.0', 'UTF-8');
+            $xml->startElement('xml');
+                    foreach($payments as $payment){
+                        $xml->startElement('Payment');
+                            $xml->writeElement('paymentID', $payment->paymentID);
+                            $xml->writeElement('deliveryOrderID', $payment->deliveryOrderID);
+                            $xml->writeElement('totalAmount', $payment->totalAmount);
+                            $xml->writeElement('paymentType', $payment->paymentType);
+                            $xml->writeElement('status', $payment->status);
+                            $xml->writeElement('created_at', $payment->created_at);
+                            $xml->writeElement('updated_at', $payment->updated_at);
+                        $xml->endElement();
+                    }
+            $xml->endElement();
+        $xml->endDocument();
+        $xml->flush();
+        unset($xml);
+        
 	return view('Payment/paymentIndex', compact('payments'));
     }
 
