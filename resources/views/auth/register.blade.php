@@ -1,4 +1,5 @@
 @extends('include.master')
+@auth
 @if(checkPermission(['admin']))
 @section('body')
 <div class="container">
@@ -120,3 +121,4 @@
     </script>
 
 @endif
+@endauth
