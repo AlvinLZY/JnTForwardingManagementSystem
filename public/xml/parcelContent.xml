@@ -1,18 +1,23 @@
+   <?xml-stylesheet type="text/xsl" href="content.xsl" ?>
    <menu>
-       <item>
-          <parcel>Document</parcel>          
-          <price>4.60</price>
-       </item>
-       <item>
-          <parcel>Food</parcel>          
-          <price>10.60</price>
-       </item>
-       <item>
-          <parcel>Clothes</parcel>          
-          <price>11.60</price>
-       </item>
-       <item>
-          <parcel>Box</parcel>          
-          <price>11.60</price>
-       </item>
+      <item>
+         <field name="parcel">Food</field>          
+         <field name="price">10.60</field>
+         <field name="description"></field>
+      </item>
+      <item>
+         <field name="'parcel">Document</field>          
+         <field name="price">4.60</field>
+         <field name="description"></field>
+      </item>
+      <item>
+         <field name="parcel">Box</field>          
+         <field name="price">11.60</field>
+         <field name="description"></field>
+      </item>
+      <item>
+         <field name="parcel">Clothes</field>          
+         <field name="price">11.60</field>
+         <field name="description"></field>
+      </item>
    </menu>

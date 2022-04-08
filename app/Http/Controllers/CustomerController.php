@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Region;
+use App\Models\Address;
 
 class CustomerController extends Controller
 {
@@ -14,8 +16,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
-        return view ('Customer.index')->with('customers', $customers);
+        $data = Customer::join('addresses','customers.id','=','addresses.customerID')
+                ->join('regions','addresses.regionID','=','regions.regionID')
+                ->get(['customers.id','customers.lastName','customers.firstName','customers.contactNo','customers.email','addresses.address','regions.postcode','regions.city','regions.state']);
+        
+        return view ('Customer.index',compact('data'));
     }
 
     /**
@@ -25,7 +30,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('Customer\createCustomer');
+        $regions = Region::all();
+        return view('Customer\createCustomer',compact('regions'));
     }
 
     /**
@@ -41,16 +47,25 @@ class CustomerController extends Controller
             'lastName' => 'required|max:30',
             'contactNo' => 'required|numeric',
             'email' => 'required|unique:customers,email,',
-            'address' => 'required',
-        ]);
+        ]);        
         
         $customer = new Customer();
+      
         $customer ->firstName = $request ->get('firstName');
         $customer ->lastName = $request ->get('lastName');
         $customer ->contactNo = $request ->get('contactNo');
         $customer ->email = $request ->get('email');
-        $customer ->address = $request ->get('address');
+        
         $customer ->save();
+        
+        $address = new Address();
+                
+        $address ->regionID = (int)$request ->get('region');
+        $address ->address = $request ->get('address');
+        $address ->customerID = $customer ->id;
+        
+        $address ->save();
+        
         return redirect('customer')->with('success','Customer has been added');
     }
 
@@ -74,7 +89,14 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $customers = Customer::find($id);
-        return view('Customer/edit',compact('customers','id'));
+        $regions = Region::all();
+        
+        $data = Customer::join('addresses','customers.id','=','addresses.customerID')
+                ->join('regions','addresses.regionID','=','regions.regionID')
+                ->where('customers.id',$id)
+                ->get(['customers.id','customers.lastName','customers.firstName','customers.contactNo','customers.email','addresses.address','addresses.addressID','regions.regionID']);
+        
+        return view('Customer/edit',compact('customers','id','regions','data'));
     }
 
     /**
@@ -85,14 +107,24 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {        
         $customer = Customer::find($id);
+      
         $customer ->firstName = $request ->get('firstName');
         $customer ->lastName = $request ->get('lastName');
         $customer ->contactNo = $request ->get('contactNo');
         $customer ->email = $request ->get('email');
-        $customer ->address = $request ->get('address');
+        
         $customer ->save();
+        
+        $address = Address::find($request ->get('addressID'));
+                
+        $address ->regionID = $request ->get('region');
+        $address ->address = $request ->get('address');
+        $address ->customerID = $customer ->id;
+        
+        $address ->save();
+        
         return redirect('customer');
     }
 

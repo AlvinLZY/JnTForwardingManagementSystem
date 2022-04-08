@@ -1,7 +1,8 @@
 @extends('include.Master')
 @section('title','Edit Order Page')
 @section('body')
-                
+
+
  
 <div class="card">
   <div class="card-header">Edit Order Page</div>
@@ -17,25 +18,42 @@
         <label>Sender ID</label></br>
         <select name="senderID" id="senderID" class="form-control">
           @foreach($customers as $customer)
-              <option value="{{$customer['customerID']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+              <option  class="form-control" value="{{$customer['customerID']}}" {{$customer->customerID == $delivery_orders->senderID ? 'selected' : '' }}>{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
           @endforeach
         </select>
         </br>
         <label>Receiver ID</label></br>
         <select name="receiverID" id="receiverID" class="form-control">
           @foreach($customers as $customer)
-              <option value="{{$customer['customerID']}}" class="form-control">{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+              <option class="form-control" value="{{$customer['customerID']}}"{{$customer->customerID == $delivery_orders->receiverID ? 'selected' : '' }}>{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
           @endforeach
         </select>
         </br>
         <label>Total Weight</label></br>
         <input type="text" name="totalWeight" id="totalWeight" value="{{$delivery_orders->totalWeight}}" class="form-control"></br>
         <label>Parcel Content Category</label></br>
-        <input type="text" name="parcelContentCategory" id="parcelContentCategory" value="{{$delivery_orders->parcelContentCategory}}" class="form-control"></br>
+        <select id="parcelContentCategory" name="parcelContentCategory" value="{{ $delivery_orders->parcelContentCategory }}" onchange='checkvalue(this.value)' requried>
+          <option value="Food">Food</option>
+          <option value="Document">Document</option>
+          <option value="Box">Box</option>
+          <option>Other...</option>
+        </select>
+        </br>
+        <input type="text" id="textCat"  name="parcelContentCategory1" style='display:none' />
+        </br>
+        <script type="text/javascript">
+          function checkvalue(val)
+          {
+              if(val==="Other...")
+              document.getElementById('textCat').style.display='block';
+              else
+              document.getElementById('textCat').style.display='none'; 
+          }
+        </script>
         <label>Schedule ID</label></br>
         <input type="text" name="scheduleID" id="scheduleID" value="{{$delivery_orders->scheduleID}}" class="form-control"></br>
         <p><input type="submit" value="Update" class="btn btn-success">
-        <a href="{{ url('order') }}" title="Back Order"><button class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i>Back Order</button></a></p>
+        <a href="{{ url('order') }}" title="Back Order"><button class="btn btn-danger"><i class="fa fa-eye" aria-hidden="true"></i>Back Order</button></a></p>
         </br>
     </form>
    

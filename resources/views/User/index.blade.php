@@ -15,19 +15,19 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($staffs as $item)
+            @foreach($users as $item)
             @if ($item->id !=1)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->staffFirstName." ".$item->staffLastName }}</td>
+                    <td>{{ $item->firstName." ".$item->lastName }}</td>
                     <td>{{ $item->contactNo }}</td>
                     <td>{{ $item->email }}</td>
 
                     <td>
-                        <a href="{{url('/staff/' . $item->id . '/edit')}}" class="btn btn-warning" >Edit</a>
+                        <a href="{{url('/User/' . $item->id . '/edit')}}" class="btn btn-warning" >Edit</a>
                     </td>
                     <td>
-                        <form action="{{action('StaffController@destroy',$item->id)}}" method="post">
+                        <form action="{{action('UserController@destroy',$item->id)}}" method="post">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button class="btn btn-danger" type="submit">Delete</button>

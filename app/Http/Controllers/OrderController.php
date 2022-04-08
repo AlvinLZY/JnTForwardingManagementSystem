@@ -16,19 +16,15 @@ class OrderController extends Controller
         return view ('order.index')->with('delivery_orders', $delivery_orders);
     }
 
-    // public function readXml()
-    // {
-        
-    //     $xmlDataString = file_get_contents(public_path('xml/parcelContent.xml'));
-    //     $xmlObject = simplexml_load_string($xmlDataString);
+    public function readXml()
+    {
+        $xmlDataString = file_get_contents(public_path('xml/parcelContent.xml'));
+        $xmlObject = simplexml_load_string($xmlDataString);
                    
-    //     $json = json_encode($xmlObject);
-    //     $phpDataArray = json_decode($json, true); 
-   
-    //     // echo "<pre>";
-    //     // print_r($phpDataArray);
-    //     dd($phpDataArray);
-    // }
+        $json = json_encode($xmlObject);
+        $phpDataArray = json_decode($json, true); 
+        return view('order.content',compact('json','phpDataArray'));
+    }
     //testing here
 
     public function create()
@@ -64,13 +60,16 @@ class OrderController extends Controller
     public function update(Request $request, $orderID)
     {
         $delivery_orders = DeliveryOrder::find($orderID);
-        
         $delivery_orders->senderID=$request->get('senderID');
         $delivery_orders->receiverID=$request->get('receiverID');
         $delivery_orders->totalWeight=$request->get('totalWeight');
-        $delivery_orders->parcelContentCategory=$request->get('parcelContentCategory');
+        $delivery_orders->parcelContentCategory=$request->get('parcelContentCategory1'); 
+
+        $delivery_orders->parcelContentCategory=$request->get('parcelContentCategory'); 
+
         $delivery_orders->scheduleID=$request->get('scheduleID');
         $delivery_orders->update();
+
         return redirect('order/')->with('flash_message', 'Order Updated!');  
     }
 

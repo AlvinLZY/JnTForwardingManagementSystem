@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
 Route::resource('customer','CustomerController');
-Route::resource('staff','StaffController');
+Route::resource('User','UserController');
 Route::resource('order',OrderController::class);
 
 Route::get('/welcome','MasterController@welcome');
@@ -38,6 +38,10 @@ Route::patch('order/{orderID}','OrderController@update')->name('order.update');
 Route::resource('payments', 'PaymentController');
 Route::get('/paymentIndex', 'PaymentController@index');
 
-Auth::routes();
+Auth::routes([
+  'register' => false,
+  'verify' => false,
+  'reset' => false
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
