@@ -72,9 +72,9 @@ use App\Http\Controllers\ScheduleController;
             @foreach($orders as $order)
                 <tr>
                     <td>{{$order['orderID']}}</td>
-                    <td>{{$order['senderID']}}</td>
-                    <td>{{$order['receiverID']}}</td>
-                    <td>{{$order['totalWeight']}}</td>
+                    <td>{{$order->sender->firstName.' '.$order->sender->lastName}}</td>
+                    <td>{{$order->receiver->firstName.' '.$order->receiver->lastName}}</td>
+                    <td>{{$order['totalWeight']}} kg</td>
                     <td>{{$order['parcelContentCategory']}}</td>
 
 {{--Get CK de Order edit and show method--}}

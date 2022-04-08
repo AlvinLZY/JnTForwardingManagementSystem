@@ -15,4 +15,13 @@ class DeliveryOrder extends Model
     public function Schedule(){
         return $this->belongsTo(Schedule::class,'scheduleID');
     }
+
+    public function sender(){
+        return $this->belongsTo(Customer::class,'senderID');
+    }
+
+    public function receiver(){
+        return $this->belongsTo(Customer::class,'receiverID');
+    }
+
 }

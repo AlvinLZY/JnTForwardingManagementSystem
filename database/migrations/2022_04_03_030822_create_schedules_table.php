@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('transportID');
             $table->integer('destRegionID');
             $table->dateTime('dateTimeDelivery');
+            $table->boolean('isDelivered')->default(0);
             $table->timestamps();
         });
     }

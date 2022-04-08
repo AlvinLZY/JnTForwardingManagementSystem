@@ -37,7 +37,7 @@ use App\Http\Controllers;
                         <div class="col">
                             <select name="staffID" id="staffID">
                                 @foreach($staffs as $staff)
-                                    <option value="{{$staff['staffID']}}" {{ $staff->staffID == $schedule->driverID ? 'selected' : '' }}>{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
+                                    <option value="{{$staff['id']}}" {{ $staff->ID == $schedule->driverID ? 'selected' : '' }}>{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
                                 @endforeach
                             </select>
                         </div>

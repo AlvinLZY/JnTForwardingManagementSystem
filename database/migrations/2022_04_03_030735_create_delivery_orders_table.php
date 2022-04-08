@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('receiverID');
             $table->float('totalWeight', 10, 0);
             $table->string('parcelContentCategory', 30);
-            $table->integer('scheduleID');
+            $table->integer('scheduleID')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -30,13 +30,13 @@ use App\Http\Controllers\ScheduleController;
                                 <select name="staffID" id="staffID" required>
                                     <option selected>-- Select A Driver --</option>
                                     @foreach($staffs as $staff)
-                                        <option value="{{$staff['staffID']}}">{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
+                                        <option value="{{$staff['id']}}">{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">Driver Contact No</div>
+                            <div class="col">Transport Plat No</div>
                             <div class="col">
                                 <select name="transportID" id="transportID" required>
                                     <option selected>-- Select A Transport --</option>
@@ -47,7 +47,7 @@ use App\Http\Controllers\ScheduleController;
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">Transport Plat No</div>
+                            <div class="col">Destination Region</div>
                             <div class="col">
                                 <select name="regionID" id="regionID" required>
                                     <option selected>-- Select Region --</option>
@@ -60,7 +60,7 @@ use App\Http\Controllers\ScheduleController;
                         <div class="row">
                             <div class="col">Delivery DateTime</div>
                             <div class="col">
-                                <input type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\TH:i', strtotime(Carbon\Carbon::now()))}}">
+                                <input type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\T10:00', strtotime(Carbon\Carbon::now()))}}">
                             </div>
                         </div>
                     </div>

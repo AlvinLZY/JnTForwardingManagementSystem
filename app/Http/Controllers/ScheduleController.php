@@ -35,7 +35,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $sql = "SELECT DISTINCT(R.regionID), R.postcode, R.city, R.State FROM Delivery_orders as DO, Customers as C, Addresses as A, Regions as R WHERE DO.ReceiverID = C.customerID AND C.AddressID = A.AddressID AND A.RegionID = R.RegionID AND DO.scheduleID IS NULL ORDER BY R.RegionID";
+        $sql = "SELECT DISTINCT(R.regionID), R.postcode, R.city, R.State FROM Delivery_orders as DO, Customers as C, Addresses as A, Regions as R WHERE DO.ReceiverID = C.ID AND C.ID = A.customerID AND A.RegionID = R.RegionID AND DO.scheduleID IS NULL ORDER BY R.RegionID";
         $results = DB::select($sql);
 
         $staffs = Staff::all();
@@ -88,7 +88,7 @@ class ScheduleController extends Controller
      */
     public function edit($scheduleID)
     {
-        $sql = 'SELECT Distinct(R.regionID), R.postcode, R.city, R.State FROM Delivery_orders as DO, Customers as C, Addresses as A, Regions as R WHERE DO.ReceiverID = C.customerID AND C.AddressID = A.AddressID AND A.RegionID = R.RegionID AND (DO.scheduleID is NULL or DO.scheduleID ='.$scheduleID.')';
+        $sql = 'SELECT Distinct(R.regionID), R.postcode, R.city, R.State FROM Delivery_orders as DO, Customers as C, Addresses as A, Regions as R WHERE DO.ReceiverID = C.ID AND C.ID = A.customerID AND A.RegionID = R.RegionID AND (DO.scheduleID is NULL or DO.scheduleID ='.$scheduleID.')';
         $results = DB::select($sql);
 
         $staffs = Staff::all();
@@ -176,7 +176,7 @@ class ScheduleController extends Controller
                 $schedule = Schedule::orderby('created_at', 'desc')->first();
                 $scheduleID = $schedule->scheduleID;
             }
-            $sql = 'SELECT DO.orderID, DO.receiverID FROM Delivery_orders as DO, Customers as C, Addresses as A, Regions as R WHERE DO.ReceiverID = C.customerID AND C.AddressID = A.AddressID AND A.RegionID = R.RegionID AND DO.scheduleID IS NULL AND R.regionID = ' . $regionID.' LIMIT 10';
+            $sql = 'SELECT DO.orderID, DO.receiverID FROM Delivery_orders as DO, Customers as C, Addresses as A, Regions as R WHERE DO.ReceiverID = C.ID AND C.ID = A.CustomerID AND A.RegionID = R.RegionID AND DO.scheduleID IS NULL AND R.regionID = ' . $regionID.' LIMIT 10';
             $orders = DB::select($sql);
             if (!empty($orders)) {
                 foreach ($orders as $order) {
