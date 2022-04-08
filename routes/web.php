@@ -25,10 +25,11 @@ Route::resource('order',OrderController::class);
 
 Route::get('/welcome','MasterController@welcome');
 
-Route::get('/crreate','ScheduleController@Create');
-Route::get('/eddit','ScheduleController@Edit');
-Route::get('/viewSchedule','ScheduleController@index');
-Route::patch('/uppdate','ScheduleController@Update');
+Route::get('/createSchedule','ScheduleController@Create');
+Route::get('/showSchedule/{scheduleID}','ScheduleController@Show');
+Route::get('/indexSchedule','ScheduleController@index');
+Route::get('/RemoveOrder/{scheduleID}/{orderID}','ScheduleController@RemoveOrder');
+Route::patch('/updateSchedule/{scheduleID}','ScheduleController@Update');
 
 Route::get('/createCustomer','CustomerController@create');
 
