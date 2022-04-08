@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($users as $item)
+            @foreach($xml as $item)
             @if ($item->id !=1)
                 <tr>
                     <td>{{ $item->id }}</td>
