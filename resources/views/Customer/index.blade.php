@@ -3,6 +3,9 @@
 @section('body')
 
 <div class="card-body">
+    <div class="card-header">
+            <h2>Customer Table</h2>
+        </div>
     <div class="table-responsive">
         <table class="table">
             <thead>

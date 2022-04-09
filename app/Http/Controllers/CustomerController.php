@@ -56,8 +56,8 @@ class CustomerController extends Controller
         $validatedData = $request->validate([
             'firstName' => 'required|max:30',
             'lastName' => 'required|max:30',
-            'contactNo' => 'required|numeric',
-            'email' => 'required|unique:customers,email,',
+            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{7,8}$/',
+            'email' => 'required|unique:customers,email|email',
         ]);        
         
         $customer = new Customer();
@@ -125,6 +125,12 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {        
+        $validatedData = $request->validate([
+            'firstName' => 'required|max:30',
+            'lastName' => 'required|max:30',
+            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{7,8}$/',
+            'email' => 'required|unique:customers,email|email',
+        ]);  
         $customer = Customer::find($id);
       
         $customer ->firstName = $request ->get('firstName');

@@ -97,6 +97,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'firstName' => 'required|max:30',
+            'lastName' => 'required|max:30',
+            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{7,8}$/',
+            'email' => 'required|unique:customers,email|email',
+        ]);  
         $User = User::find($id);
         $User ->firstName = $request ->get('firstName');
         $User ->lastName = $request ->get('lastName');

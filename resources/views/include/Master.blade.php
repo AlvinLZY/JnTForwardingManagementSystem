@@ -60,7 +60,7 @@
             @auth
                 @if(checkPermission(['admin'])&&Auth::Check())
                 <li class="nav-item">
-                    <a class="nav-link" href="User">User</a>
+                    <a class="nav-link" href="{{action('UserController@index')}}">User</a>
                 </li>
                 @endif
                 @endauth
