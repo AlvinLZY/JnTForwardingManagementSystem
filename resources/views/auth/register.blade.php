@@ -1,3 +1,4 @@
+<!--//author:Sing Wei Hern-->
 @extends('include.master')
 @auth
 @if(checkPermission(['admin']))

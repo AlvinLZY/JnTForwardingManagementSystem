@@ -1,5 +1,6 @@
 @extends('include.master')
-
+@section('title','Create Customer')
+<!--//author:Sing Wei Hern-->
 @section('body')
 <h2>Insert new customer</h2><br/>
 <form method="post" action="{{url('customer')}}">

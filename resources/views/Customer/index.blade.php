@@ -1,7 +1,7 @@
 @extends('include.master')
 @section('title','Customer Page')
 @section('body')
-
+<!--//author:Sing Wei Hern-->
 <div class="card-body">
     <div class="card-header">
             <h2>Customer Table</h2>
