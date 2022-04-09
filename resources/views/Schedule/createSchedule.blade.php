@@ -27,7 +27,7 @@ use App\Http\Controllers\ScheduleController;
                         <div class="row">
                             <div class="col">Driver Name</div>
                             <div class="col-md-6">
-                                <select class="form-control" ame="staffID" id="staffID" required>
+                                <select class="form-control" name="staffID" id="staffID" required>
                                     <option disabled selected value>-- Select A Driver --</option>
                                     @foreach($staffs as $staff)
                                         <option value="{{$staff['id']}}">{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>

@@ -18,19 +18,19 @@ class OrderController extends Controller
 
     public function create()
     {
-        
+
         $customers = Customer::all();
         $delivery_orders = DeliveryOrder::all();
         return view('order.create',compact('customers','delivery_orders'));
     }
 
     public function store(Request $request)
-    { 
+    {
         try{
         $input = $request->all();
         DeliveryOrder::create($input);
         // Alert::success('Congrats', 'You\'ve Successfully Registered');
-        return redirect('order')->with('Success', 'Order Added!'); 
+        return redirect('order')->with('Success', 'Order Added!');
         }catch(\Exception $ex){
             return redirect('order')->with('error',$ex->getMessage());
         }
@@ -40,8 +40,8 @@ class OrderController extends Controller
     {
         $customers = Customer::all();
         $delivery_orders = DeliveryOrder::find($orderID);
-        $senderID = Customer::firstWhere('customerID',$delivery_orders['senderID']);
-        $receiverID = Customer::firstWhere('customerID',$delivery_orders['receiverID']);
+        $senderID = Customer::firstWhere('id',$delivery_orders['senderID']);
+        $receiverID = Customer::firstWhere('id',$delivery_orders['receiverID']);
         return view('order.show',compact('customers','delivery_orders','senderID','receiverID'));
     }
 

@@ -61,7 +61,7 @@ class ScheduleController extends Controller
             $schedule->dateTimeDelivery = $request->get('dateTimeDelivery');
             $schedule->save();
             $this->AssignOrderSchedule($region->regionID,null);
-            return redirect('schedules')->with('success','Schedules has been added');
+            return redirect('schedules')->with('Success','Schedules has been added');
         }catch (\Exception $ex){
             return redirect('schedules')->with('error',$ex->getMessage());
         }

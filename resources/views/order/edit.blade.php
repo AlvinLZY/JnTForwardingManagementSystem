@@ -12,12 +12,12 @@
     </div><br/>
 @endif
 
- 
+
 <div class="card">
   <div class="card-header">Edit Order Page</div>
   <div class="card-body">
-      
-      
+
+
       <form action="{{ action ('OrderController@update', $delivery_orders) }}" method="post">
       <!--<form action="{{ url('/order/' . $delivery_orders->delivery_orders) }}" method="post">-->
         @csrf
@@ -27,22 +27,22 @@
         <label>Sender ID</label></br>
         <select name="senderID" id="senderID" class="form-control">
           @foreach($customers as $customer)
-              <option  class="form-control" value="{{$customer['customerID']}}" {{$customer->customerID == $delivery_orders->senderID ? 'selected' : '' }}>{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+              <option  class="form-control" value="{{$customer['id']}}" {{$customer->id == $delivery_orders->senderID ? 'selected' : '' }}>{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
           @endforeach
         </select>
         </br>
         <label>Receiver ID</label></br>
         <select name="receiverID" id="receiverID" class="form-control">
           @foreach($customers as $customer)
-              <option class="form-control" value="{{$customer['customerID']}}"{{$customer->customerID == $delivery_orders->receiverID ? 'selected' : '' }}>{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
+              <option class="form-control" value="{{$customer['id']}}"{{$customer->id == $delivery_orders->receiverID ? 'selected' : '' }}>{{$customer['firstName']. ' ' .$customer['lastName']}}</option>
           @endforeach
         </select>
         </br>
         <label>Total Weight</label></br>
         <input type="number" name="totalWeight" id="totalWeight" value="{{$delivery_orders->totalWeight}}" class="form-control" required></br>
-        
+
         <label>Parcel Content Category</label></br>
-        <select id="parcelContentCategory" name="parcelContentCategory" value="{{ $delivery_orders->parcelContentCategory }}" onchange='checkvalue(this.value)' >
+        <select id="parcelContentCategory" name="parcelContentCategory" class="form-control" value="{{ $delivery_orders->parcelContentCategory }}" onchange='checkvalue(this.value)' >
           <option value="Food">Food</option>
           <option value="Document">Document</option>
           <option value="Box">Box</option>
@@ -55,9 +55,9 @@
         <a href="{{ url('order') }}" title="Back Order"><button class="btn btn-danger"><i class="fa fa-eye" aria-hidden="true"></i>Back Order</button></a></p>
         </br>
     </form>
-   
+
   </div>
 </div>
 
- 
+
 @endsection
