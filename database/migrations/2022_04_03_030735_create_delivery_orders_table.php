@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('scheduleID');
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE delivery_orders AUTO_INCREMENT = 1001;");
     }
 
     /**

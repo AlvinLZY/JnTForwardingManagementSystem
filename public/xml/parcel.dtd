@@ -1,0 +1,5 @@
+<!ELEMENT menu(item+)>
+<!ELEMENT item(parcel,price,description)>
+<!ELEMENT parcel (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT description (#PCDATA)>

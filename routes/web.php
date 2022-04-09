@@ -32,9 +32,8 @@ Route::patch('/uppdate','ScheduleController@Update');
 
 Route::get('/createCustomer','CustomerController@create');
 
-Route::resource('order',OrderController::class);
-// Route::view('/content', 'order.content.blade.xslt');
-Route::get('/content', 'OrderController@readXml')->name('content');
+// Route::view('/content', 'showContent');
+Route::get('/content', 'xmlController@readXml');
 Route::patch('order/{orderID}','OrderController@update')->name('order.update');
 
 Route::resource('payments', 'PaymentController');

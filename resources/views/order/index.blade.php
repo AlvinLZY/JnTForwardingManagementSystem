@@ -1,13 +1,24 @@
 @extends('include.Master')
 @section('title','Order Page')
 @section('body')
-                
+@if (\Session::has('Success'))
+    <div class="alert alert-success">
+        <p>{{\Session::get('Success')}}</p>
+    </div><br/>
+@elseif(\Session::has('error'))
+    <div class="alert alert-danger">
+        <p>{{\Session::get('error')}}</p>
+    </div><br/>
+@endif
                     <div class="card-header">
                         <h2>Order Now</h2>
                     </div>
                     <div class="card-body">
                         <a href="{{ url('/order/create') }}" class="btn btn-warning btn-sm" title="Add New Order">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        </a>
+                        <a href="{{ action('xmlController@readXml') }}" class="btn btn-warning btn-sm" title="View Parcel Content Available">
+                            <i class="fa fa-plus" aria-hidden="true"></i> View Parcel Content Available
                         </a>
                         <br/>
                         <br/>

@@ -1,23 +1,31 @@
-   <?xml-stylesheet type="text/xsl" href="content.xsl" ?>
-   <menu>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="content.xsl"?>
+<!DOCTYPE menu SYSTEM "parcel.dtd">
+<menu>
       <item>
-         <field name="parcel">Food</field>          
-         <field name="price">10.60</field>
-         <field name="description"></field>
-      </item>
-      <item>
-         <field name="'parcel">Document</field>          
-         <field name="price">4.60</field>
-         <field name="description"></field>
-      </item>
-      <item>
-         <field name="parcel">Box</field>          
-         <field name="price">11.60</field>
-         <field name="description"></field>
-      </item>
-      <item>
-         <field name="parcel">Clothes</field>          
-         <field name="price">11.60</field>
-         <field name="description"></field>
-      </item>
+          <parcel>Document</parcel>          
+          <price>4.60</price>
+          <description>Doc Desc</description>
+       </item>
+       <item>
+          <parcel>Food</parcel>          
+          <price>10.60</price>
+          <description>Food Desc</description>
+       </item>
+       <item>
+          <parcel>Clothes</parcel>          
+          <price>11.60</price>
+          <description>Clothes Decs</description>
+       </item>
+       <item>
+          <parcel>Box</parcel>          
+          <price>11.60</price>
+          <description>Box Desc</description>
+       </item>
+       <item>
+          <parcel>Electronic</parcel>          
+          <price>12.00</price>
+          <description>Electronic</description>
+       </item>
    </menu>
+     
