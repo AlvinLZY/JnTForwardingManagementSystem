@@ -11,17 +11,9 @@
     <User>
         <id>2</id>
         <username>weihernsing</username>
-        <firstName>awe</firstName>
-        <lastName>awe</lastName>
-        <contactNo>012345678</contactNo>
-        <email>ngxr@gmail.com</email>
-    </User>
-    <User>
-        <id>3</id>
-        <username>system01</username>
-        <firstName>123</firstName>
-        <lastName>qwe</lastName>
-        <contactNo>0123456781</contactNo>
-        <email>singwh-am19@student.tarc.edu.my</email>
+        <firstName>weihern</firstName>
+        <lastName>sing</lastName>
+        <contactNo>01139572057</contactNo>
+        <email>weihern23@gmail.com</email>
     </User>
 </Users>

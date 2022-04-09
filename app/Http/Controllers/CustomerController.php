@@ -56,7 +56,7 @@ class CustomerController extends Controller
         $validatedData = $request->validate([
             'firstName' => 'required|max:30',
             'lastName' => 'required|max:30',
-            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{7,8}$/',
+            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{8,9}$/',
             'email' => 'required|unique:customers,email|email',
         ]);        
         
@@ -128,7 +128,7 @@ class CustomerController extends Controller
         $validatedData = $request->validate([
             'firstName' => 'required|max:30',
             'lastName' => 'required|max:30',
-            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{7,8}$/',
+            'contactNo' => 'required|numeric|regex:/^(01)[0-9]{8,9}$/',
             'email' => 'required|unique:customers,email|email',
         ]);  
         $customer = Customer::find($id);
