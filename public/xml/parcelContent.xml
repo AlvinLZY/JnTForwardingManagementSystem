@@ -5,22 +5,23 @@
       <item>
           <parcel>Document</parcel>          
           <price>4.60</price>
-          <description>Doc Desc</description>
+          <description>A document shipment can be an A4 or A5 postage envelope, or it can be a box full of documents. What if my document shipment contains other items? If your shipment also contains other items, but you declare it as a document your shipment will: Be delayed as it will be held in customs until a customs declaration is completed
+</description>
        </item>
        <item>
           <parcel>Food</parcel>          
           <price>10.60</price>
-          <description>Food Desc</description>
+          <description>The food parcel is filled with non-perishable snacks, sweets, biscuits, dried fruit and nuts, Pot Noodles and newspapers.</description>
        </item>
        <item>
           <parcel>Clothes</parcel>          
           <price>11.60</price>
-          <description>Clothes Decs</description>
+          <description>For example, if your parcel contains clothes, you should list down as “H&M men’s sweather”, “Uniqlo women’s sweater”, “Padini t-shirt” and so on.</description>
        </item>
        <item>
           <parcel>Box</parcel>          
           <price>11.60</price>
-          <description>Box Desc</description>
+          <description>Medium Parcel Boxes are treated as Medium Parcel Boxes for members of the public dropping items at a Post Office but also conform to standard parcel sizes for clients with a Royal Mail Click & Drop account.</description>
        </item>
        <item>
           <parcel>Electronic</parcel>          
