@@ -21,7 +21,7 @@
         </select>
         </br>
         <label>Total Weight</label></br>
-        <input type="text" name="totalWeight" id="totalWeight" class="form-control"></br>
+        <input type="number" name="totalWeight" id="totalWeight" class="form-control" required></br>
         <label>Parcel Content Category</label></br>
         
         <select id="parcelContentCategory" class="form-control" name="parcelContentCategory" required focus onchange='checkvalue(this.value)'>

@@ -39,7 +39,7 @@
         </select>
         </br>
         <label>Total Weight</label></br>
-        <input type="text" name="totalWeight" id="totalWeight" value="{{$delivery_orders->totalWeight}}" class="form-control"></br>
+        <input type="number" name="totalWeight" id="totalWeight" value="{{$delivery_orders->totalWeight}}" class="form-control" required></br>
         
         <label>Parcel Content Category</label></br>
         <select id="parcelContentCategory" name="parcelContentCategory" value="{{ $delivery_orders->parcelContentCategory }}" onchange='checkvalue(this.value)' >
