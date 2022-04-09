@@ -1,7 +1,7 @@
 @extends('include.Master')
 @section('title','Edit Order Page')
 @section('body')
-
+<!--author:Ng Xing Ran-->
 <h2>Create New Payment</h2><br/>
 
 <form method="post" action="{{url('payments')}}">

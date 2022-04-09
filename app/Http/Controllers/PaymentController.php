@@ -1,5 +1,5 @@
 <?php
-
+//author:Ng Xing Ran
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;

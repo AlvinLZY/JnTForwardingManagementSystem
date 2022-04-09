@@ -1,7 +1,7 @@
 @extends('include.master')
 @section('title','Staff Page')
 @section('body')
-
+<!--author:Alvin Lim Zhi Yoong-->
     @if (\Session::has('Success'))
         <div class="alert alert-success">
             <p>{{\Session::get('Success')}}</p>

@@ -1,5 +1,5 @@
 @extends('include.master')
-
+<!--author:Alvin Lim Zhi Yoong-->
 @section('body')
     <h2>Insert new staff</h2><br/>
     <form method="post" action="{{url('Staff')}}">
