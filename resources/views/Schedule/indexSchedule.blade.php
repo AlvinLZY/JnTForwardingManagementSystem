@@ -32,7 +32,7 @@ use App\Http\Controllers\ScheduleController;
                     <th>Date Created</th>
                     <th>Destination Region</th>
                     <th>Delivery DateTime</th>
-                    <th colspan="2">Action</th>
+                    <th colspan="3">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,15 +46,17 @@ use App\Http\Controllers\ScheduleController;
                         <td>{{$schedule['dateTimeDelivery']}}</td>
 
                         <td>
-                            <a href="{{action('ScheduleController@edit',$schedule['scheduleID'])}}" class="btn btn-warning">Edit</a>
                             <a href="{{action("ScheduleController@Show",$schedule['scheduleID'])}}" class="btn btn-info">Show</a>
                         </td>
                         <td>
-{{--                             <form action="{{action('ProductController@destroy',$product['id'])}}" method="post">--}}
-{{--                                 @csrf--}}
-{{--                                 <input name="_method" type="hidden" value="DELETE">--}}
-{{--                                 <button class="btn btn-danger" type="submit">Delete</button>--}}
-{{--                             </form>--}}
+                            <a href="{{action('ScheduleController@edit',$schedule['scheduleID'])}}" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                             <form action="{{action('ScheduleController@destroy',$schedule['scheduleID'])}}" method="post">
+                                 @csrf
+                                 <input name="_method" type="hidden" value="DELETE">
+                                 <button class="btn btn-danger" type="submit">Delete</button>
+                             </form>
                         </td>
                     </tr>
                 @endforeach

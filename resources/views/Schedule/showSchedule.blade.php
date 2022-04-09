@@ -55,7 +55,7 @@ use App\Http\Controllers\ScheduleController;
             </div>
         </div>
         <br>
-        <h3>Orders Assignned</h3>
+        <h3>Orders Assigned</h3><br>
         @if($orders->count() > 0)
         <table class="table table-striped">
             <thead>
@@ -63,7 +63,7 @@ use App\Http\Controllers\ScheduleController;
                 <th>Order ID</th>
                 <th>Sender Name</th>
                 <th>Receiver Name</th>
-                <th>Total Weight</th>
+                <th>Total Weight (kg)</th>
                 <th>Parcel Content</th>
                 <th colspan="2">Action</th>
             </tr>
@@ -74,17 +74,15 @@ use App\Http\Controllers\ScheduleController;
                     <td>{{$order['orderID']}}</td>
                     <td>{{$order->sender->firstName.' '.$order->sender->lastName}}</td>
                     <td>{{$order->receiver->firstName.' '.$order->receiver->lastName}}</td>
-                    <td>{{$order['totalWeight']}} kg</td>
+                    <td>{{$order['totalWeight']}}</td>
                     <td>{{$order['parcelContentCategory']}}</td>
 
 {{--Get CK de Order edit and show method--}}
                     <td>
-                        <a href="{{action('ScheduleController@edit',$schedule['scheduleID'])}}" class="btn btn-warning">Edit</a>
-                        <a href="{{action("ScheduleController@Show",$schedule['scheduleID'])}}" class="btn btn-info">Show</a>
+                        <a href="{{ url('/order/' . $order->orderID) }}" class="btn btn-info">Show</a>
                         <a href="{{action("ScheduleController@RemoveOrder",[$schedule['scheduleID'],$order['orderID']])}}" class="btn btn-danger">Remove</a>
                     </td>
                     <td>
-
 {{--                        <form action="{{action('ScheduleController@RemoveOrder',order['orderID'])}}" method="post">--}}
 {{--                            @csrf--}}
 {{--                            <input name="_method" type="hidden" value="Remove">--}}
@@ -97,10 +95,10 @@ use App\Http\Controllers\ScheduleController;
         </table>
         @else
             <br>
-            <h4>There's No Orders Assignned to this Schedule</h4>
+            <h4>There's No Orders Assigned to this Schedule</h4>
             <br>
         @endif
-        <a href="{{ url('schedules') }}"><button class="btn btn-success">Back</button></a>
+        <button class="btn btn-success" onclick="window.location='{{url('schedules')}}'" style="margin: 0 45%">Back</button>
     </div>
 
 @endsection
