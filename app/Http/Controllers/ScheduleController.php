@@ -160,7 +160,7 @@ class ScheduleController extends Controller
             }
         }
         catch(\Exception $ex){
-            return redirect()->back()->with('error',$ex->getMessage().'Assign');
+            return redirect()->back()->with('error',$ex->getMessage());
         }
     }
 
@@ -185,7 +185,7 @@ class ScheduleController extends Controller
             }
         }
         catch(\Exception $ex){
-            return redirect('schedules')->with('error',$ex->getMessage().'Assign');
+            return redirect('schedules')->with('error',$ex->getMessage());
         }
     }
 
@@ -209,7 +209,7 @@ class ScheduleController extends Controller
              }
         }
         catch(\Exception $ex){
-            return redirect('schedules')->with('error',$ex->getMessage().'Update');
+            return redirect('schedules')->with('error',$ex->getMessage());
         }
     }
 }

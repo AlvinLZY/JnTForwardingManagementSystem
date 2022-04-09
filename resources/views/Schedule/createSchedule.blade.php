@@ -26,9 +26,9 @@ use App\Http\Controllers\ScheduleController;
                     <div class="card-body">
                         <div class="row">
                             <div class="col">Driver Name</div>
-                            <div class="col">
-                                <select name="staffID" id="staffID" required>
-                                    <option selected>-- Select A Driver --</option>
+                            <div class="col-md-6">
+                                <select class="form-control" ame="staffID" id="staffID" required>
+                                    <option disabled selected value>-- Select A Driver --</option>
                                     @foreach($staffs as $staff)
                                         <option value="{{$staff['id']}}">{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
                                     @endforeach
@@ -37,9 +37,9 @@ use App\Http\Controllers\ScheduleController;
                         </div>
                         <div class="row">
                             <div class="col">Transport Plat No</div>
-                            <div class="col">
-                                <select name="transportID" id="transportID" required>
-                                    <option selected>-- Select A Transport --</option>
+                            <div class="col-md-6">
+                                <select class="form-control" name="transportID" id="transportID" required>
+                                    <option disabled selected value>-- Select A Transport --</option>
                                     @foreach($transports as $transport)
                                         <option value="{{$transport['transportID']}}">{{$transport['carPlate']}}</option>
                                     @endforeach
@@ -48,9 +48,9 @@ use App\Http\Controllers\ScheduleController;
                         </div>
                         <div class="row">
                             <div class="col">Destination Region</div>
-                            <div class="col">
-                                <select name="regionID" id="regionID" required>
-                                    <option selected>-- Select Region --</option>
+                            <div class="col-md-6">
+                                <select class="form-control" name="regionID" id="regionID" required>
+                                    <option disabled selected value>-- Select Region --</option>
                                     @foreach($results as $result)
                                         <option value="{{$result->regionID}}">{{$result->postcode.' '.$result->city.', '.$result->State}}</option>
                                     @endforeach
@@ -59,8 +59,8 @@ use App\Http\Controllers\ScheduleController;
                         </div>
                         <div class="row">
                             <div class="col">Delivery DateTime</div>
-                            <div class="col">
-                                <input type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\T10:00', strtotime(Carbon\Carbon::now()))}}">
+                            <div class="col-md-6">
+                                <input class="form-control" type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\T10:00', strtotime(Carbon\Carbon::now()))}}">
                             </div>
                         </div>
                     </div>

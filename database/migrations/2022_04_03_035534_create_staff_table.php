@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('staffLastName', 30);
             $table->string('contactNo');
             $table->string('email');
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

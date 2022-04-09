@@ -21,6 +21,7 @@ Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
 Route::resource('customer','CustomerController');
 Route::resource('User','UserController');
+Route::resource('Staff','StaffController');
 Route::resource('order',OrderController::class);
 
 Route::get('/welcome','MasterController@welcome');
@@ -30,6 +31,9 @@ Route::get('/showSchedule/{scheduleID}','ScheduleController@Show');
 Route::get('/indexSchedule','ScheduleController@index');
 Route::get('/RemoveOrder/{scheduleID}/{orderID}','ScheduleController@RemoveOrder');
 Route::patch('/updateSchedule/{scheduleID}','ScheduleController@Update');
+
+Route::get('/createStaff','staffController@create');
+Route::patch('/updateStaff/{staffID}','StaffController@Update');
 
 Route::get('/createCustomer','CustomerController@create');
 

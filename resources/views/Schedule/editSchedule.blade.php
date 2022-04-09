@@ -28,14 +28,14 @@ use App\Http\Controllers;
                 <div class="card-body">
                     <div class="row">
                         <div class="col">Schedule ID</div>
-                        <div class="col">
-                            <input type="text" name="scheduleID" value="{{$schedule->scheduleID}}" readonly>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="scheduleID" value="{{$schedule->scheduleID}}" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">Driver Name</div>
-                        <div class="col">
-                            <select name="staffID" id="staffID">
+                        <div class="col-md-6">
+                            <select class="form-control" name="staffID" id="staffID">
                                 @foreach($staffs as $staff)
                                     <option value="{{$staff['id']}}" {{ $staff->ID == $schedule->driverID ? 'selected' : '' }}>{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
                                 @endforeach
@@ -44,8 +44,8 @@ use App\Http\Controllers;
                     </div>
                     <div class="row">
                         <div class="col">Driver Contact No</div>
-                        <div class="col">
-                            <select name="transportID" id="transportID">
+                        <div class="col-md-6">
+                            <select class="form-control" name="transportID" id="transportID">
                                 @foreach($transports as $transport)
                                     <option value="{{$transport['transportID']}}" {{ $transport['transportID'] == $schedule['transportID'] ? 'selected' : '' }}>{{$transport['carPlate']}}</option>
                                 @endforeach
@@ -54,8 +54,8 @@ use App\Http\Controllers;
                     </div>
                     <div class="row">
                         <div class="col">Transport Plat No</div>
-                        <div class="col">
-                            <select name="regionID" id="regionID" required>
+                        <div class="col-md-6">
+                            <select class="form-control" name="regionID" id="regionID" required>
                                 @foreach($results as $result)
                                     <option value="{{$result->regionID}}" {{ $result->regionID == $schedule->Region->regionID ? 'selected' : '' }}>{{$result->postcode.' '.$result->city.', '.$result->State}}</option>
                                 @endforeach
@@ -64,8 +64,8 @@ use App\Http\Controllers;
                     </div>
                     <div class="row">
                         <div class="col">Delivery DateTime</div>
-                        <div class="col">
-                            <input type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\TH:i', strtotime($schedule->dateTimeDelivery))}}">
+                        <div class="col-md-6">
+                            <input class="form-control" type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\TH:i', strtotime($schedule->dateTimeDelivery))}}">
                         </div>
                     </div>
                 </div>
