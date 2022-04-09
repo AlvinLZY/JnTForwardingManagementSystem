@@ -23,7 +23,13 @@ return new class extends Migration
             $table->foreign('customerID')->references('id')->on('customers')->onDelete('cascade');
         });
         
-        DB::statement("ALTER TABLE addresses AUTO_INCREMENT = 1;");
+        DB::statement("INSERT INTO `addresses` (`addressID`, `regionID`, `address`, `customerID`, `created_at`, `updated_at`) VALUES
+(1, 1, '123, Jalan Muhibah, Taman Botani', 1001, '2022-04-08 23:32:19', '2022-04-08 23:32:19'),
+(2, 1, '432, Jalan Gopeng, Taman Rapat', 1002, '2022-04-08 23:35:42', '2022-04-08 23:35:42'),
+(3, 2, '321, Jalan Belimbing, Taman Belimbing', 1003, '2022-04-08 23:36:18', '2022-04-08 23:36:18'),
+(4, 3, '12, Jalan Nanas, Taman Buah', 1004, '2022-04-08 23:36:53', '2022-04-08 23:36:53'),
+(5, 4, '99, Jalan Mulia, Taman Bestari', 1005, '2022-04-08 23:37:28', '2022-04-08 23:37:28');");
+        DB::statement("ALTER TABLE addresses AUTO_INCREMENT = 6;");
     }
 
     /**
