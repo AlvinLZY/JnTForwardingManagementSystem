@@ -1,48 +1,49 @@
 @extends('include.master')
-@section('title','Customer Page')
+@section('title','User Page')
 @section('body')
 
 <div class="card-body">
     <div class="card-header">
-            <h2>Customer Table</h2>
+            <h2>User Table</h2>
         </div>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Customer ID</th>
+                    <th>User ID</th>
                     <th>Name</th>
                     <th>Contact No</th>
                     <th>Email</th>
-                    <th>Address</th>
                     <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($data as $item)
+            @foreach($xml as $item)
+            @if ($item->id !=1)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->lastName." ".$item->firstName }}</td>
+                    <td>{{ $item->firstName." ".$item->lastName }}</td>
                     <td>{{ $item->contactNo }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->address.", ".$item->postcode." ".$item->city.", ".$item->state }}</td>
 
                     <td>
-                        <a href="{{url('/customer/' . $item->id . '/edit')}}" class="btn btn-warning" >Edit</a>
+                        <a href="{{url('/User/' . $item->id . '/edit')}}" class="btn btn-warning" >Edit</a>
                     </td>
                     <td>
-                        <form action="{{action('CustomerController@destroy',$item->id)}}" method="post">
+                        <form action="{{action('UserController@destroy',$item->id)}}" method="post">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
                             <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
+            @endif
             @endforeach
             </tbody>
         </table>
         <div style="text-align:center">
-            <button type="button" class="btn btn-success" onclick="window.location='{{ action('CustomerController@create') }}'">Create New Customer</button>
+            <button type="button" class="btn btn-success" onclick="window.location='register'">Create New User</button>
+            <button type="button" class="btn btn-success" onclick="window.location='{{action('UserController@showXML')}}'">Show User(.xml)</button>
         </div>
     </div>
 </div>

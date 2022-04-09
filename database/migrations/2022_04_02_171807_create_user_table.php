@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('username')->unique();
             $table->string('firstName', 30);
             $table->string('lastName', 30);
             $table->string('contactNo');
             $table->string('email');
-            $table->string('address');
+            $table->string('password');
+            $table->rememberToken();
+            $table->tinyInteger('is_permission');
             $table->timestamps();
         });
-        
-        DB::statement("ALTER TABLE customers AUTO_INCREMENT = 1001;");
     }
 
     /**
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('users');
     }
 };

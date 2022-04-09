@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Regex;
 
 class RegisterController extends Controller
 {
@@ -29,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/welcome';
 
     /**
      * Create a new controller instance.
@@ -50,11 +53,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'min:8', 'max:20', 'unique:staff,username'],
-            'staffFirstName' => ['required', 'string', 'max:30'],
-            'staffLastName' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:staff,email'],
-            'contactNo' => ['required','numeric'],
+            'username' => ['required', 'string', 'min:8', 'max:20', 'unique:users,username'],
+            'firstName' => ['required', 'string', 'max:30'],
+            'lastName' => ['required', 'string', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users,email'],
+            'contactNo' => ['required','numeric','regex:/^(01)[0-9]{8,9}$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],                       
         ]);
     }
@@ -67,13 +70,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return \App\Models\staff::create([
+        return User::create([
             'username' => $data['username'],
-            'staffFirstName' => $data['staffFirstName'],
-            'staffLastName' => $data['staffLastName'],
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
             'email' => $data['email'],
             'contactNo' => $data['contactNo'],
             'password' => Hash::make($data['password']),
+            'is_permission'=> '0',
         ]);
+    }
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 }

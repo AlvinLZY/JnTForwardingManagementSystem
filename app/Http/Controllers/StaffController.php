@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Models\staff;
+use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Exception;
 
 class StaffController extends Controller
 {
@@ -14,8 +17,12 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = staff::all();
-        return view ('Staff.index')->with('staffs', $staffs);
+        if(Auth::check()) {
+            $staffs = staff::all();
+            return view('Staff.indexStaff')->with('staffs', $staffs);
+        }
+        else
+            return view('Auth/login');
     }
 
     /**
@@ -25,7 +32,12 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check())
+        {
+            return view('Staff\createStaff');
+        }
+        else
+            return view('Auth/login');
     }
 
     /**
@@ -36,7 +48,26 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $validatedData = $request->validate([
+                'username' => 'required|max:50',
+                'firstName' => 'required|max:30',
+                'lastName' => 'required|max:30',
+                'contactNo' => 'required|numeric',
+                'email' => 'required|unique:customers,email,',
+            ]);
+            $staff = new staff();
+            $staff ->username = $request ->get('username');
+            $staff ->staffFirstName = $request ->get('firstName');
+            $staff ->staffLastName = $request ->get('lastName');
+            $staff ->contactNo = $request ->get('contactNo');
+            $staff ->email = $request ->get('email');
+            $staff->save();
+            return redirect('Staff')->with('Success','Customer has been added');
+        }
+        catch (\Exception $ex){
+            return redirect('Staff')->with('error',$ex->getMessage());
+        }
     }
 
     /**
@@ -58,8 +89,13 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        $staffs = staff::find($id);
-        return view('Staff/edit',compact('staffs','id'));
+        if(Auth::check())
+        {
+            $staffs = staff::find($id);
+            return view('Staff.editStaff',compact('staffs','id'));
+        }
+        else
+            return view('Auth/login');
     }
 
     /**
@@ -71,13 +107,18 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $staff = staff::find($id);
-        $staff ->staffFirstName = $request ->get('staffFirstName');
-        $staff ->staffLastName = $request ->get('staffLastName');
-        $staff ->contactNo = $request ->get('contactNo');
-        $staff ->email = $request ->get('email');
-        $staff ->save();
-        return redirect('staff');
+        try {
+            $staff = staff::find($id);
+            $staff->staffFirstName = $request->get('firstName');
+            $staff->staffLastName = $request->get('lastName');
+            $staff->contactNo = $request->get('contactNo');
+            $staff->email = $request->get('email');
+            $staff->save();
+            return redirect('Staff')->with('Success', 'Information has been updated');
+        }
+        catch(\Exception $ex){
+            return redirect('Staff')->with('error',$ex->getMessage().'Update');
+        }
     }
 
     /**
@@ -88,8 +129,13 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        $staff = staff::find($id);
-        $staff->delete();
-        return redirect('staff')->with('success','Information has been deleted');
+        try {
+            $staff = staff::find($id);
+            $staff->delete();
+            return redirect('Staff')->with('Success', 'Information has been deleted');
+        }
+        catch(\Exception $ex){
+            return redirect('Staff')->with('error',$ex->getMessage());
+        }
     }
 }

@@ -2,7 +2,6 @@
 @section('title','Create Order Page')
 @section('body')
 
-
 <div class="card-header">Order Page</div>
   <div class="card-body">
       <form action="{{ url('order') }}" method="POST">
@@ -53,5 +52,4 @@
    
   </div>
 
- 
 @endsection

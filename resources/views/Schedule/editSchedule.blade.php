@@ -8,42 +8,72 @@ use App\Http\Controllers;
 @section('title','Edit Schedule')
 
 @section('body')
-    <div style="margin-top: 15%;text-align: center">
-        <h2>Edit Schedule</h2><br>
-        <form method="post" action="{{action('ScheduleController@Update',$scheduleID)}}">
-            @csrf
-            <input name="_method" type="hidden" value="PATCH">
-            <p>
-                <label for="scheduleID">Schedule ID:</label>
-                <input type="text" name="scheduleID" value="{{$schedule->scheduleID}}" readonly>
-            </p>
-            <p>
-                <label for="driverID">Driver Name:</label>
-                <select name="staffID" id="staffID">
-                    @foreach($staffs as $staff)
-                        <option value="{{$staff['staffID']}}" {{ $staff->staffID == $schedule->driverID ? 'selected' : '' }}>{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
-                    @endforeach
-                </select>
-            </p>
-            <p>
-                <label for="transportID">Transport Plat No:</label>
-                <select name="transportID" id="transportID">
-                    @foreach($transports as $transport)
-                        <option value="{{$transport['transportID']}}" {{ $transport['transportID'] == $schedule['transportID'] ? 'selected' : '' }}>{{$transport['carPlate']}}</option>
-                    @endforeach
-                </select>
-            </p>
-            <p>
-                <label for="regionID">Destination Region:</label>
-                <input type="text" name="postcode" value="{{$schedule->Region->postcode}}">
-            </p>
-            <p>
-                <label for="dateTimeDelivery">Delivery DateTime:</label>
-                <input type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\TH:i', strtotime($schedule->dateTimeDelivery))}}">
-            </p>
-            <p>
-                <button class="btn btn-primary" type="submit">Update</button>
-            </p>
-        </form>
+    <style>
+        .row{
+            padding: 1%;
+        }
+        .row> :first-child{
+            text-align: right;
+        }
+    </style>
+
+    <div style="margin-top: 10%;">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title" style="text-align: center">Edit Schedule</h2>
+            </div>
+            <form method="post" action="{{action('ScheduleController@Update',$scheduleID)}}" style="margin: 0 15%">
+                @csrf
+                <input name="_method" type="hidden" value="PATCH">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">Schedule ID</div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="scheduleID" value="{{$schedule->scheduleID}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Driver Name</div>
+                        <div class="col-md-6">
+                            <select class="form-control" name="staffID" id="staffID">
+                                @foreach($staffs as $staff)
+                                    <option value="{{$staff['id']}}" {{ $staff->ID == $schedule->driverID ? 'selected' : '' }}>{{$staff['staffFirstName'].' '.$staff['staffLastName']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Driver Contact No</div>
+                        <div class="col-md-6">
+                            <select class="form-control" name="transportID" id="transportID">
+                                @foreach($transports as $transport)
+                                    <option value="{{$transport['transportID']}}" {{ $transport['transportID'] == $schedule['transportID'] ? 'selected' : '' }}>{{$transport['carPlate']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Transport Plat No</div>
+                        <div class="col-md-6">
+                            <select class="form-control" name="regionID" id="regionID" required>
+                                @foreach($results as $result)
+                                    <option value="{{$result->regionID}}" {{ $result->regionID == $schedule->Region->regionID ? 'selected' : '' }}>{{$result->postcode.' '.$result->city.', '.$result->State}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Delivery DateTime</div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="datetime-local" name="dateTimeDelivery" value="{{date('Y-m-d\TH:i', strtotime($schedule->dateTimeDelivery))}}">
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                    <a class="btn btn-default btn-danger" href="{{ url('schedules') }}">Cancel</a>
+                </p>
+            </form>
+        </div>
     </div>
 @endsection

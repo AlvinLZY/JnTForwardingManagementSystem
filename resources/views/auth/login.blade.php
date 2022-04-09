@@ -1,4 +1,4 @@
-@extends('include.master')
+@extends('include.Master')
 
 @section('body')
 <div class="container">

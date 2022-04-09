@@ -2,7 +2,7 @@
 @section('title','Edit Staff')
 @section('body')
 
-<h2>Edit Staff Details</h2><br />
+<h2>Edit Customer Details</h2><br />
     <form method="post" action="{{action ('StaffController@update', $id) }}">
       @csrf
       <input name="_method" type="hidden" value="PATCH">
@@ -10,7 +10,7 @@
             <label for="firstName" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 
             <div class="col-md-6">
-                <input id="staffFirstName" type="text" class="form-control @error('staffFirstName') is-invalid @enderror" name="staffFirstName" value="{{ $staffs->staffFirstName }}" required autocomplete="staffFirstName">
+                <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ $staffs->staffFirstName }}" required autocomplete="firstName">
 
                 @error('firstName')
                     <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
             <label for="lastName" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
 
             <div class="col-md-6">
-                <input id="staffLastName" type="text" class="form-control @error('staffLastName') is-invalid @enderror" name="staffLastName" value="{{ $staffs->staffLastName }}" required autocomplete="staffLastName">
+                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ $staffs->staffLastName }}" required autocomplete="lastName">
 
                 @error('lastName')
                     <span class="invalid-feedback" role="alert">
@@ -57,7 +57,8 @@
                     </span>
                 @enderror
             </div>
-        </div>      
+        </div>
+
       <div class="row mb-0">
             <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">

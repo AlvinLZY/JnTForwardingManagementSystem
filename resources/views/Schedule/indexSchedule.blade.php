@@ -5,7 +5,7 @@ use App\Http\Controllers\ScheduleController;
 
 @extends('include.Master')
 
-@section('title','View Schedule')
+@section('title','Schedule')
     @section('body')
         @if (\Session::has('Success'))
             <div class="alert alert-success">
@@ -17,16 +17,22 @@ use App\Http\Controllers\ScheduleController;
             </div><br/>
         @endif
         <div>
+            <br>
+            <h1>Schedule Dashboard</h1>
+            <div style="text-align: right">
+                <button class="btn btn-success" onclick="window.location='{{action('ScheduleController@Create')}}'">Add New Schedule</button>
+            </div>
+            <br>
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Schedule ID</th>
-                    <th>Driver ID</th>
-                    <th>Transport ID</th>
+                    <th>Driver Name</th>
+                    <th>Transport Plat No</th>
                     <th>Date Created</th>
                     <th>Destination Region</th>
                     <th>Delivery DateTime</th>
-                    <th colspan="2">Action</th>
+                    <th colspan="3">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,21 +46,21 @@ use App\Http\Controllers\ScheduleController;
                         <td>{{$schedule['dateTimeDelivery']}}</td>
 
                         <td>
+                            <a href="{{action("ScheduleController@Show",$schedule['scheduleID'])}}" class="btn btn-info">Show</a>
+                        </td>
+                        <td>
                             <a href="{{action('ScheduleController@edit',$schedule['scheduleID'])}}" class="btn btn-warning">Edit</a>
                         </td>
                         <td>
-                            {{--                        <form action="{{action('ProductController@destroy',$product['id'])}}" method="post">--}}
-                            {{--                            @csrf--}}
-                            {{--                            <input name="_method" type="hidden" value="DELETE">--}}
-                            {{--                            <button class="btn btn-danger" type="submit">Delete</button>--}}
-                            {{--                        </form>--}}
+                             <form action="{{action('ScheduleController@destroy',$schedule['scheduleID'])}}" method="post">
+                                 @csrf
+                                 <input name="_method" type="hidden" value="DELETE">
+                                 <button class="btn btn-danger" type="submit">Delete</button>
+                             </form>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-        </div>
-        <div>
-            <button class="btn btn-success" onclick="window.location='{{action('ScheduleController@Create')}}'">Add New Schedule</button>
         </div>
     @endsection

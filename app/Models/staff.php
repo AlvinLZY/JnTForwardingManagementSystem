@@ -45,7 +45,6 @@ class staff extends Authenticatable
     /*protected $casts = [
         'email_verified_at' => 'datetime',
     ];*/
-    protected $primaryKey = 'staffID';
 
     public function schedule(){
         return $this->hasMany(Schedule::class,'staffID');

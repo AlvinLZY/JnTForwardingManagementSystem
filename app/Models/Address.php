@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Address extends Model
 {
     use HasFactory;
-    protected $table = 'customers';
-    //protected $primaryKey = 'customerID';
+    protected $primaryKey = 'addressID';
     
     protected $fillable =[
-        'firstName',
-        'lastName',
-        'contactNo',
-        'email',
+        'regionID',
+        'address',
+        'customerID',
     ];
 }

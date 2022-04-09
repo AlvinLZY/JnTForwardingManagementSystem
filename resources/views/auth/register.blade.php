@@ -1,5 +1,6 @@
 @extends('include.master')
-
+@auth
+@if(checkPermission(['admin']))
 @section('body')
 <div class="container">
     <div class="row justify-content-center">
@@ -28,9 +29,9 @@
                             <label for="staffFirstName" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="staffFirstName" type="text" class="form-control @error('staffFirstName') is-invalid @enderror" name="staffFirstName" value="{{ old('staffFirstName') }}" required autocomplete="staffFirstName">
+                                <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName">
 
-                                @error('staffFirstName')
+                                @error('firstName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -38,12 +39,12 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="staffLastName" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
+                            <label for="lastName" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="staffLastName" type="text" class="form-control @error('staffLastName') is-invalid @enderror" name="staffLastName" value="{{ old('staffLastName') }}" required autocomplete="staffLastName">
+                                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName">
 
-                                @error('staffLastName')
+                                @error('lastName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -113,3 +114,11 @@
     </div>
 </div>
 @endsection
+@else
+    <script type="text/javascript">
+        window.alert("You are not allowed to access to this page!!");
+        window.location = "{{url('/welcome')}}";
+    </script>
+
+@endif
+@endauth

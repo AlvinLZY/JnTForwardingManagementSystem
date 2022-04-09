@@ -20,26 +20,38 @@ Route::get('/', function () {
 Route::resource('schedules','ScheduleController');
 Route::resource('master','MasterController');
 Route::resource('customer','CustomerController');
-Route::resource('staff','StaffController');
+Route::resource('User','UserController');
+Route::resource('Staff','StaffController');
 Route::resource('order',OrderController::class);
 
 Route::get('/welcome','MasterController@welcome');
 
-Route::get('/crreate','ScheduleController@Create');
-Route::get('/eddit','ScheduleController@Edit');
-Route::get('/viewSchedule','ScheduleController@index');
-Route::patch('/uppdate','ScheduleController@Update');
+Route::get('/createSchedule','ScheduleController@Create');
+Route::get('/showSchedule/{scheduleID}','ScheduleController@Show');
+Route::get('/indexSchedule','ScheduleController@index');
+Route::get('/RemoveOrder/{scheduleID}/{orderID}','ScheduleController@RemoveOrder');
+Route::patch('/updateSchedule/{scheduleID}','ScheduleController@Update');
+
+Route::get('/createStaff','staffController@create');
+Route::patch('/updateStaff/{staffID}','StaffController@Update');
 
 Route::get('/createCustomer','CustomerController@create');
 
-// Route::view('/content', 'showContent');
 Route::get('/content', 'xmlController@readXml');
 Route::patch('order/{orderID}','OrderController@update')->name('order.update');
 
 Route::resource('payments', 'PaymentController');
 Route::get('/paymentIndex', 'PaymentController@index');
 
-Auth::routes();
 
+Route::get('/showXML','UserController@showXML');
+Auth::routes([
+  'verify' => false,
+  'reset' => false
+]);
+
+Route::group(['middleware'=>'auth'], function () {
+	Route::get('permissions-all-users',['middleware'=>'check-permission:user|admin','uses'=>'HomeController@allUsers']);
+	Route::get('permissions-admin',['middleware'=>'check-permission:admin','uses'=>'HomeController@adminSuperadmin']);
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
