@@ -24,6 +24,9 @@
                         </tr>
                     </xsl:for-each>
                 </table>
+                <a href="../User" >
+                    <button type="button">Back</button>
+                </a>
             </body>
         </html>
     </xsl:template>

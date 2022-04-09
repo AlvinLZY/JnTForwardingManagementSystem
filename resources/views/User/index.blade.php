@@ -43,6 +43,7 @@
         </table>
         <div style="text-align:center">
             <button type="button" class="btn btn-success" onclick="window.location='register'">Create New User</button>
+            <button type="button" class="btn btn-success" onclick="window.location='{{action('UserController@showXML')}}'">Show User(.xml)</button>
         </div>
     </div>
 </div>
