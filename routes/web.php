@@ -42,6 +42,8 @@ Route::patch('order/{orderID}','OrderController@update')->name('order.update');
 Route::resource('payments', 'PaymentController');
 Route::get('/paymentIndex', 'PaymentController@index');
 
+
+Route::get('/showXML','UserController@showXML');
 Auth::routes([
   'verify' => false,
   'reset' => false

@@ -4,8 +4,16 @@
 
 @section('body')
     <div>
-        <h3>Welcome.blade.php</h3>
-        <button onclick="window.location='{{action('ScheduleController@index')}}'">To Schedule||View.blade.php</button>
-        <button onclick="window.location='{{action('PaymentController@index')}}'">To payment||paymentIndex.blade.php</button>
+        <h3>Welcome To JnT Ekspress</h3>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('OrderController@index')}}'">Order</button>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('PaymentController@index')}}'">Payment</button>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('ScheduleController@index')}}'">Schedule</button>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('CustomerController@index')}}'">Customer</button>
+        
+        @auth
+        @if(checkPermission(['admin']))
+        <button class="btn btn-outline-info" onclick="window.location='{{action('ScheduleController@index')}}'">User</button>  
+        @endif
+        @endauth
     </div>
 @endsection

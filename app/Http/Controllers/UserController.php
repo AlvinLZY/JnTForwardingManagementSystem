@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use XMLWriter;
+use DOMDocument;
+use XSLTProcessor;
 
 class UserController extends Controller
 {
@@ -15,7 +18,30 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view ('User.index',compact('users'));
+
+        $xml = new XMLWriter();
+        $xml->openURI('xml/Users.xml');
+        $xml->setIndent(true);
+        $xml->setIndentString('    ');
+        $xml->startDocument('1.0', 'UTF-8');
+            $xml->startElement('Users');
+                    foreach($users as $user){
+                        $xml->startElement('User');
+                            $xml->writeElement('id', $user->id);
+                            $xml->writeElement('username', $user->username);
+                            $xml->writeElement('firstName', $user->firstName);
+                            $xml->writeElement('lastName', $user->lastName);
+                            $xml->writeElement('contactNo', $user->contactNo);
+                            $xml->writeElement('email', $user->email);
+                        $xml->endElement();
+                    }
+            $xml->endElement();
+        $xml->endDocument();
+        $xml->flush();
+        unset($xml);
+        
+        $xml = simplexml_load_file('xml/Users.xml');
+        return view ('User.index',compact('xml'));
     }
 
     /**
@@ -58,8 +84,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $Users = User::find($id);
-        return view('User/edit',compact('Users','id'));
+        $users = User::find($id);
+        return view('User/edit',compact('users','id'));
     }
 
     /**
@@ -91,5 +117,22 @@ class UserController extends Controller
         $User = User::find($id);
         $User->delete();
         return redirect('User')->with('success','Information has been deleted');
+    }
+    
+    public function showXML()
+    {
+        
+        $xsl = new DOMDocument();
+        $xsl->load('../public/xsl/user.xsl');
+
+        $xml = new DOMDocument();
+        $xml->load('../public/xml/Users.xml');
+
+        $p = new XSLTProcessor;
+        $p->importStylesheet($xsl);
+
+        $xml = $p->transformToXml($xml);
+
+        echo $xml;
     }
 }

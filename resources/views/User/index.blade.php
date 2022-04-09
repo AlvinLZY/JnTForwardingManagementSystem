@@ -7,7 +7,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Staff ID</th>
+                    <th>User ID</th>
                     <th>Name</th>
                     <th>Contact No</th>
                     <th>Email</th>
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($users as $item)
+            @foreach($xml as $item)
             @if ($item->id !=1)
                 <tr>
                     <td>{{ $item->id }}</td>
@@ -38,6 +38,9 @@
             @endforeach
             </tbody>
         </table>
+        <div style="text-align:center">
+            <button type="button" class="btn btn-success" onclick="window.location='register'">Create New User</button>
+        </div>
     </div>
 </div>
 @endsection
