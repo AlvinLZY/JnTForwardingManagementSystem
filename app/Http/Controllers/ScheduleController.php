@@ -129,9 +129,25 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $scheduleID)
     {
-        //
+        try {
+            $schedule = Schedule::find($scheduleID);
+            $orders = DeliveryOrder::where('scheduleID', '=', $scheduleID)->get();
+
+            if ($orders->count() > 0 || $schedule->count() > 0) {
+                foreach ($orders as $order) {
+                    DB::statement('UPDATE delivery_orders set scheduleID = null WHERE scheduleID = ' . $scheduleID . ' AND orderID = ' . $order['orderID']);
+                }
+                $schedule->delete();
+                return redirect()->back()->with('Success', 'Schedule [' . $scheduleID . '] is deleted.');
+            } else {
+                return redirect()->back()->with('error', 'Schedule [' . $scheduleID . '] is not found. Please refresh and try again.');
+            }
+        }
+        catch(\Exception $ex){
+            return redirect()->back()->with('error',$ex->getMessage());
+        }
     }
 
     /**
@@ -156,7 +172,7 @@ class ScheduleController extends Controller
                 return redirect()->back()->with('Success','Order ['.$orderID.'] has been removed from schedule ['.$scheduleID.'] successfully.');
             }
             else{
-                return redirect()->back()->with('error','Order ['.$orderID.'] is not found. Please try again.');
+                return redirect()->back()->with('error','Order ['.$orderID.'] is not found. Please refresh and try again.');
             }
         }
         catch(\Exception $ex){
