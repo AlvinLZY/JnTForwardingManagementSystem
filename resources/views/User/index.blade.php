@@ -1,8 +1,11 @@
 @extends('include.master')
-@section('title','Staff Page')
+@section('title','User Page')
 @section('body')
 
 <div class="card-body">
+    <div class="card-header">
+            <h2>User Table</h2>
+        </div>
     <div class="table-responsive">
         <table class="table">
             <thead>

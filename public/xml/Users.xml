@@ -8,4 +8,20 @@
         <contactNo>0123456789</contactNo>
         <email>admin@admin.com</email>
     </User>
+    <User>
+        <id>2</id>
+        <username>weihernsing</username>
+        <firstName>awe</firstName>
+        <lastName>awe</lastName>
+        <contactNo>012345678</contactNo>
+        <email>ngxr@gmail.com</email>
+    </User>
+    <User>
+        <id>3</id>
+        <username>system01</username>
+        <firstName>123</firstName>
+        <lastName>qwe</lastName>
+        <contactNo>0123456781</contactNo>
+        <email>singwh-am19@student.tarc.edu.my</email>
+    </User>
 </Users>

@@ -1,8 +1,8 @@
 @extends('include.master')
-@section('title','Edit Staff')
+@section('title','Edit User')
 @section('body')
 
-<h2>Edit Staff Details</h2><br />
+<h2>Edit User Details</h2><br />
     <form method="post" action="{{action ('UserController@update', $id) }}">
       @csrf
       <input name="_method" type="hidden" value="PATCH">
