@@ -2,6 +2,7 @@
 @section('title','Order Page')
 @section('body')
 @if (\Session::has('Success'))
+<!--author:Loke Choon Keat-->
     <div class="alert alert-success">
         <p>{{\Session::get('Success')}}</p>
     </div><br/>

@@ -1,5 +1,5 @@
 <?php
-
+//author:Sing Wei Hern
 
   function checkPermission($permissions){
     $userAccess = getMyPermission(auth()->user()->is_permission);

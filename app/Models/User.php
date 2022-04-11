@@ -1,5 +1,5 @@
 <?php
-
+//author:Sing Wei Hern
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;

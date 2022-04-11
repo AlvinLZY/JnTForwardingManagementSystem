@@ -1,7 +1,7 @@
 @extends('include.master')
 @section('title','Edit Customer')
 @section('body')
-
+<!--//author:Sing Wei Hern-->
 <h2>Edit Customer Details</h2><br />
     <form method="post" action="{{action ('CustomerController@update', $id) }}">
       @csrf

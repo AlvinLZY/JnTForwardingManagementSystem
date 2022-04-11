@@ -1,7 +1,7 @@
 @extends('include.master')
 @section('title','Edit User')
 @section('body')
-
+<!--//author:Sing Wei Hern-->
 <h2>Edit User Details</h2><br />
     <form method="post" action="{{action ('UserController@update', $id) }}">
       @csrf
