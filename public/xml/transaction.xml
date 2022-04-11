@@ -2,20 +2,11 @@
 <xml>
     <Payment>
         <paymentID>1</paymentID>
-        <deliveryOrderID>1</deliveryOrderID>
-        <totalAmount>100</totalAmount>
-        <paymentType>eWallet</paymentType>
-        <status>CashOnDelivery</status>
-        <created_at>2022-04-09 07:32:41</created_at>
-        <updated_at>2022-04-09 07:32:49</updated_at>
-    </Payment>
-    <Payment>
-        <paymentID>2</paymentID>
-        <deliveryOrderID>1</deliveryOrderID>
-        <totalAmount>100</totalAmount>
-        <paymentType>eWallet</paymentType>
-        <status>CashOnDelivery</status>
-        <created_at>2022-04-09 12:15:11</created_at>
-        <updated_at>2022-04-09 12:15:11</updated_at>
+        <deliveryOrderID>2</deliveryOrderID>
+        <totalAmount>88</totalAmount>
+        <paymentType>Cash</paymentType>
+        <status>Paid</status>
+        <created_at>2022-04-09 16:59:39</created_at>
+        <updated_at>2022-04-09 16:59:39</updated_at>
     </Payment>
 </xml>
