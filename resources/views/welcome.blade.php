@@ -5,14 +5,15 @@
 @section('body')
     <div>
         <h3>Welcome To JnT Ekspress</h3>
-        <button class="btn btn-outline-info" onclick="window.location='{{action('OrderController@index')}}'">Order</button>
-        <button class="btn btn-outline-info" onclick="window.location='{{action('PaymentController@index')}}'">Payment</button>
-        <button class="btn btn-outline-info" onclick="window.location='{{action('ScheduleController@index')}}'">Schedule</button>
-        <button class="btn btn-outline-info" onclick="window.location='{{action('CustomerController@index')}}'">Customer</button>
-        
+        <img src="{{asset('Logo.jpg')}}" style="width:100%"><br><br>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('OrderController@index')}}'" style="margin: 2%">Order</button>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('PaymentController@index')}}'" style="margin: 2%">Payment</button>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('ScheduleController@index')}}'" style="margin: 2%">Schedule</button>
+        <button class="btn btn-outline-info" onclick="window.location='{{action('CustomerController@index')}}'" style="margin: 2%">Customer</button>
+
         @auth
         @if(checkPermission(['admin']))
-        <button class="btn btn-outline-info" onclick="window.location='{{action('ScheduleController@index')}}'">User</button>  
+        <button class="btn btn-outline-info" onclick="window.location='{{action('ScheduleController@index')}}'">User</button>
         @endif
         @endauth
     </div>
